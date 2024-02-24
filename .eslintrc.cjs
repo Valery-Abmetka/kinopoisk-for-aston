@@ -5,10 +5,11 @@ module.exports = {
   },
   extends: [
     "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/strict-type-checked",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:react/jsx-runtime",
+    "plugin:@typescript-eslint/stylistic-type-checked",
   ],
   overrides: [
     {
@@ -28,6 +29,7 @@ module.exports = {
     },
     ecmaVersion: "latest",
     sourceType: "module",
+    tsconfigRootDir: "./tsconfig.json",
   },
   plugins: ["@typescript-eslint", "react", "react-hooks"],
   rules: {
