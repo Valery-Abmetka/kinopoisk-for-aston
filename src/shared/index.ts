@@ -1,4 +1,6 @@
 import { Button } from "./UI/Button/Button";
+import { AddFavorites } from "./UI/addFavorite/ui/AddFavorits";
+import { CardLoader } from "./api/CardLoader";
 import { DataLoading } from "./api/DataLoading";
 
-export { Button, DataLoading };
+export { Button, DataLoading, AddFavorites, CardLoader };
