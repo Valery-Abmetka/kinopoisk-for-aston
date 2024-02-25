@@ -1,0 +1,26 @@
+.soloCard {
+  margin: 0 auto;
+  width: 70vw;
+  margin-top: 150px;
+  display: flex;
+  gap: 130px;
+}
+.fullInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.description {
+  max-width: 750px;
+  font-size: xx-large;
+}
+
+.kinopoiskLink {
+  font-size: -webkit-xxx-large;
+}
+
+.link {
+  color: purple;
+}
