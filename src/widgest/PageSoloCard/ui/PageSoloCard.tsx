@@ -1,3 +1,3 @@
 export function PageSoloCard() {
-  return <></>;
+  return <div>SoloCard</div>;
 }
