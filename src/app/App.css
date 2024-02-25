@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+input,
+button,
+textarea,
+select,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font: inherit;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+body {
+  min-width: 1024px;
+  overflow: auto;
+  background-color: #2c2929;
+  color: #fff;
+}
+
+.app {
+  padding: 0 10px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
