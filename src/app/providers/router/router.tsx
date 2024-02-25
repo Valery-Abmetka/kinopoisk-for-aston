@@ -8,7 +8,8 @@ import { LoginPage } from "../../../pages/LoginPage/index.ts";
 import { SignupPage } from "../../../pages/SignupPage/index.ts";
 import { ErrorPage } from "../../../pages/ErrorPage/index.ts";
 import { DataLoading } from "../../../shared/index.ts";
-
+import { SoloCardPage } from "../../../pages/SoloCardPage/index.ts";
+import { CardLoader } from "../../../shared/api/CardLoader.ts";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -18,6 +19,11 @@ const router = createBrowserRouter([
         path: "",
         loader: DataLoading,
         element: <Main />,
+      },
+      {
+        path: "/:id",
+        element: <SoloCardPage />,
+        loader: CardLoader,
       },
       { path: "/favorites", element: <FavoritesPage /> },
       { path: "/history", element: <HistoryPage /> },

@@ -1,4 +1,4 @@
-import { PageSoloCard } from "../../../widgest/PageSoloCard/ui/PageSoloCard";
+import { PageSoloCard } from "../../../widgest/PageSoloCard/index";
 
 export function SoloCardPage() {
   return <PageSoloCard />;

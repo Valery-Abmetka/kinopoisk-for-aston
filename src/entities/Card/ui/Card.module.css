@@ -2,6 +2,7 @@
   background: rgb(133 138 235);
   border-radius: 21px;
   width: 360px;
+  min-width: 360px;
 }
 .head {
   position: relative;
