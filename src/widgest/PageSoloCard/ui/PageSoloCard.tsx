@@ -1,4 +1,4 @@
-import { Card } from "../../../shared/UI/Card/Card";
+import { Card } from "../../../entities/Card/ui/Card";
 
 export function PageSoloCard() {
   return <Card />;

@@ -7,13 +7,18 @@ import { SearchPage } from "../../../pages/SearchPage/index.ts";
 import { LoginPage } from "../../../pages/LoginPage/index.ts";
 import { SignupPage } from "../../../pages/SignupPage/index.ts";
 import { ErrorPage } from "../../../pages/ErrorPage/index.ts";
+import { DataLoading } from "../../../shared/index.ts";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
-      { path: "", element: <Main /> },
+      {
+        path: "",
+        loader: DataLoading,
+        element: <Main />,
+      },
       { path: "/favorites", element: <FavoritesPage /> },
       { path: "/history", element: <HistoryPage /> },
       { path: "/search", element: <SearchPage /> },

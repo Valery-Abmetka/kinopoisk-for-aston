@@ -1,0 +1,40 @@
+.card {
+  background: rgb(133 138 235);
+  border-radius: 21px;
+  width: 360px;
+}
+.head {
+  position: relative;
+  min-height: 508px;
+  border-radius: 19px;
+}
+.footer {
+  padding: 16px;
+}
+.title {
+  color: black;
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.description {
+  color: #fffcfc;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.rating {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: #5514a2;
+  padding: 3px 10px;
+  border-radius: 10px;
+  color: #fbffff;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
