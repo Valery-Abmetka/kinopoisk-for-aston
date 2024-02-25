@@ -1,7 +1,23 @@
 import { AddFavorites } from "../../../shared/UI/addFavorite/index";
-import { Props } from "../Card.type";
 import styles from "./Card.module.css";
 import { Link } from "react-router-dom";
+
+export interface Props {
+  kinopoiskId?: number;
+  nameRu: string;
+  genres: Genre[];
+  ratingKinopoisk: number;
+  year: string;
+  posterUrlPreview: string;
+}
+
+export interface Country {
+  country: string;
+}
+
+export interface Genre {
+  genre: string;
+}
 
 export function Card({
   nameRu,

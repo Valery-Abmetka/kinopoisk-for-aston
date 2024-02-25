@@ -1,4 +1,4 @@
-import { Props as Item } from "../../../entities/Card/Card.type";
+import { Props as Item } from "../../../entities/index";
 
 export interface Data {
   total: number;
