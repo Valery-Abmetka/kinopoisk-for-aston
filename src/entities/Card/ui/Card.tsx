@@ -1,4 +1,4 @@
-import { AddFavorites } from "../../../shared/UI/addFavorite/index";
+import { AddFavorites } from "../../../shared";
 import styles from "./Card.module.css";
 
 export interface Props {
