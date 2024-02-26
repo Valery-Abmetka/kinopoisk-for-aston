@@ -1,12 +1,12 @@
 import { useLoaderData } from "react-router-dom";
 import { Card, Props as Item } from "../../../entities";
-import styles from "./PageSoloCard.module.css";
+import styles from "./SoloCard.module.css";
 interface Movie extends Item {
   description: string;
   webUrl: string;
 }
 
-export function PageSoloCard() {
+export function SoloCard() {
   const movie = useLoaderData() as Movie;
 
   return (
@@ -18,6 +18,7 @@ export function PageSoloCard() {
         posterUrlPreview={movie.posterUrlPreview}
         year={movie.year}
       />
+      {/* вынести в отдельный компонент */}
       <div className={styles.fullInfo}>
         <div className={styles.description}>Описание: {movie.description}</div>
         <div className={styles.kinopoiskLink}>
