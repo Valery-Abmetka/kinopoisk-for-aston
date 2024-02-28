@@ -1,3 +1,5 @@
+import { Signup } from "../../../widgest/Signup";
+
 export function SignupPage() {
-  return <h2>Регистрация</h2>;
+  return <Signup />;
 }

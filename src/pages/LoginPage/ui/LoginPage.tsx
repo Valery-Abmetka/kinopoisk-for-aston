@@ -1,3 +1,5 @@
+import { Login } from "../../../widgest/Login";
+
 export function LoginPage() {
-  return <h2>Страница входа</h2>;
+  return <Login />;
 }
