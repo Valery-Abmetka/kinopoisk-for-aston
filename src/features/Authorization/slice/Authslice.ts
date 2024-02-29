@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { checkAuth, signup } from "../";
+import { login, logout } from "../actions/AuthActions";
 
 interface AuthState {
   isAuthenticated: boolean;
@@ -36,6 +37,32 @@ const authSlice = createSlice({
         state.isAuthenticated = true;
       })
       .addCase(signup.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      })
+      .addCase(login.pending, (state) => {
+        state.isLoading = true;
+        state.error = undefined;
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.email = action.payload.email;
+        state.isAuthenticated = true;
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      })
+      .addCase(logout.pending, (state) => {
+        state.isLoading = true;
+        state.error = undefined;
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.isLoading = false;
+        state.email = null;
+        state.isAuthenticated = false;
+      })
+      .addCase(logout.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
       })

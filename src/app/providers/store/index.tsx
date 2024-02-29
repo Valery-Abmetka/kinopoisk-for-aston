@@ -8,7 +8,11 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: ["auth/signup/fulfilled"],
+        ignoredActions: [
+          "auth/signup/fulfilled",
+          "auth/login/rejected",
+          "auth/login/fulfilled",
+        ],
       },
     }),
 });

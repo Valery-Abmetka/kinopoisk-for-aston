@@ -1,10 +1,10 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import styles from "./Form.module.css";
-
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../app/providers/store";
 import { useNavigate } from "react-router";
 import { signup } from "../../../features/Authorization";
+import { login } from "../../../features/Authorization/actions/AuthActions";
 
 interface MyForm {
   email: string;
@@ -33,7 +33,16 @@ export function Form({ page }: Props) {
           navigate("/");
         }
       } catch (err) {
-        throw new Error("Не действительный email");
+        throw new Error("ошибка запроса");
+      }
+    } else if (page === "Login") {
+      try {
+        const response = await dispatch(login(user));
+        if (response.type !== "auth/login/rejected") {
+          navigate("/");
+        }
+      } catch (err) {
+        throw new Error("ошибка запроса");
       }
     }
   };
