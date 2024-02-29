@@ -1,5 +1,9 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import styles from "./Form.module.css";
+import { signup } from "../../../features/Authorization/actions/AuthActions";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../../app/providers/store";
+import { useNavigate } from "react-router";
 
 interface MyForm {
   email: string;
@@ -11,6 +15,8 @@ interface Props {
 }
 
 export function Form({ page }: Props) {
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
   const { register, handleSubmit } = useForm<MyForm>({
     defaultValues: {
       email: "",
@@ -18,17 +24,21 @@ export function Form({ page }: Props) {
     },
   });
 
-  const onSubmit: SubmitHandler<MyForm> = (data) => {
-    const { email, password } = data;
+  const onSubmit: SubmitHandler<MyForm> = async (user) => {
     if (page === "Signup") {
-      console.log(email);
-
-      // dispatch(signup({ email, password }));
+      try {
+        const response = await dispatch(signup(user));
+        if (response.type !== "auth/signup/rejected") {
+          navigate("/");
+        }
+      } catch (err) {
+        throw new Error("Не действительный email");
+      }
     }
-    if (page === "Login") {
-      console.log(password);
-      // dispatch(signin({ email, password }));
-    }
+    // if (page === "Login") {
+    //   // console.log(password);
+    //   // dispatch(signin({ email, password }));
+    // }
   };
 
   return (
