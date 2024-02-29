@@ -1,9 +1,17 @@
 import { Outlet } from "react-router-dom";
 import "./App.css";
 import { Navbar } from "../widgest/Navbar";
+import { useAuthCheck } from "../shared/hooks/useCheckAuth";
+import { useSelector } from "react-redux";
+import { getIsLoadingAuth } from "../features/Authorization";
 
 function App() {
-  return (
+  useAuthCheck();
+  const isLoadingCheckAuth = useSelector(getIsLoadingAuth);
+
+  return isLoadingCheckAuth ? (
+    <h1>Проверка авторизации</h1>
+  ) : (
     <div className="app">
       <Navbar />
       <div>

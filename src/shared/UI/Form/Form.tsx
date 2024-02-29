@@ -1,9 +1,10 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import styles from "./Form.module.css";
-import { signup } from "../../../features/Authorization/actions/AuthActions";
+
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../app/providers/store";
 import { useNavigate } from "react-router";
+import { signup } from "../../../features/Authorization";
 
 interface MyForm {
   email: string;
@@ -35,10 +36,6 @@ export function Form({ page }: Props) {
         throw new Error("Не действительный email");
       }
     }
-    // if (page === "Login") {
-    //   // console.log(password);
-    //   // dispatch(signin({ email, password }));
-    // }
   };
 
   return (
