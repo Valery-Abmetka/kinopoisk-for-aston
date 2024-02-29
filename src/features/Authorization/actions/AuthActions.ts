@@ -13,7 +13,7 @@ interface User {
 }
 export const signup = createAsyncThunk(
   "auth/signup",
-  async ({ email, password }: User) => {
+  async ({ email, password }: User, { rejectWithValue }) => {
     try {
       const response = await createUserWithEmailAndPassword(
         auth,
@@ -21,8 +21,8 @@ export const signup = createAsyncThunk(
         password,
       );
       return response.user;
-    } catch (err) {
-      throw new Error();
+    } catch (error) {
+      return rejectWithValue(error);
     }
   },
 );
@@ -51,7 +51,7 @@ export const checkAuth = createAsyncThunk(
       if (user && user.email) {
         dispatch(setAuthorized(user.email));
       } else {
-        return rejectWithValue("Вы не авторизованы");
+        return rejectWithValue("Authentication check error");
       }
     });
   },

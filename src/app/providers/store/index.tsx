@@ -10,6 +10,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [
           "auth/signup/fulfilled",
+          "auth/signup/rejected",
           "auth/login/rejected",
           "auth/login/fulfilled",
         ],

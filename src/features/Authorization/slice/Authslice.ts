@@ -8,10 +8,11 @@ interface AuthState {
   isLoading: boolean;
   error: string | undefined;
 }
+
 const initialState: AuthState = {
   email: null,
   isAuthenticated: false,
-  isLoading: true,
+  isLoading: false,
   error: undefined,
 };
 
@@ -36,9 +37,13 @@ const authSlice = createSlice({
         state.email = action.payload.email;
         state.isAuthenticated = true;
       })
-      .addCase(signup.rejected, (state, action) => {
+
+      //Не смог их типизировать но хотел чтобы показывались именно ошибки FIREBASE
+      //без этого выдавал ошибку
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .addCase(signup.rejected, (state, action: any) => {
         state.isLoading = false;
-        state.error = action.error.message;
+        state.error = action.payload.code; //"action.payload" относится к типу unknown.
       })
       .addCase(login.pending, (state) => {
         state.isLoading = true;
@@ -49,9 +54,10 @@ const authSlice = createSlice({
         state.email = action.payload.email;
         state.isAuthenticated = true;
       })
-      .addCase(login.rejected, (state, action) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .addCase(login.rejected, (state, action: any) => {
         state.isLoading = false;
-        state.error = action.error.message;
+        state.error = action.payload.code;
       })
       .addCase(logout.pending, (state) => {
         state.isLoading = true;
@@ -62,9 +68,10 @@ const authSlice = createSlice({
         state.email = null;
         state.isAuthenticated = false;
       })
-      .addCase(logout.rejected, (state, action) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .addCase(logout.rejected, (state, action: any) => {
         state.isLoading = false;
-        state.error = action.error.message;
+        state.error = action.payload.code;
       })
       .addCase(checkAuth.rejected, (state) => {
         state.isLoading = false;

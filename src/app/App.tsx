@@ -10,7 +10,7 @@ function App() {
   const isLoadingCheckAuth = useSelector(getIsLoadingAuth);
 
   return isLoadingCheckAuth ? (
-    <h1>Проверка авторизации</h1>
+    <h1>Загрузка</h1>
   ) : (
     <div className="app">
       <Navbar />

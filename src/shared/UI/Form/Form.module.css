@@ -35,3 +35,9 @@
   font-size: x-large;
   background-color: rgb(142, 20, 158);
 }
+
+.err {
+  color: red;
+  font-size: xx-large;
+  text-align: center;
+}

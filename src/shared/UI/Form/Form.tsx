@@ -1,9 +1,9 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import styles from "./Form.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../../app/providers/store";
 import { useNavigate } from "react-router";
-import { signup } from "../../../features/Authorization";
+import { getErrorAuth, signup } from "../../../features/Authorization";
 import { login } from "../../../features/Authorization/actions/AuthActions";
 
 interface MyForm {
@@ -16,8 +16,12 @@ interface Props {
 }
 
 export function Form({ page }: Props) {
+  const error = useSelector(getErrorAuth);
+
   const dispatch = useDispatch<AppDispatch>();
+
   const navigate = useNavigate();
+
   const { register, handleSubmit } = useForm<MyForm>({
     defaultValues: {
       email: "",
@@ -77,6 +81,7 @@ export function Form({ page }: Props) {
             className={styles.input}
           />
         </div>
+        {error && <div className={styles.err}>{error}</div>}
         <button className={styles.button} type={"submit"}>
           {page}
         </button>

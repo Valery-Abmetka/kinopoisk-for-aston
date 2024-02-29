@@ -1,0 +1,19 @@
+.navBar {
+  display: flex;
+  justify-content: space-around;
+}
+
+.link {
+  color: #fff;
+  font-size: x-large;
+}
+
+.active {
+  color: rgb(178, 85, 255);
+}
+.navBarLinks {
+  width: 438px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
