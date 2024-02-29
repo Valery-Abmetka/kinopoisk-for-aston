@@ -3,7 +3,13 @@ import styles from "./Navbar.module.css";
 import cn from "classnames";
 import { MdLocalMovies as HomeIcon } from "react-icons/md";
 
+import { useSelector } from "react-redux";
+import { getIsAuthenticated } from "../../../features/Authorization";
+import { AuthNavBar, NoAuthNavBar } from "../../../shared";
+
 export function Navbar() {
+  const isAuth = useSelector(getIsAuthenticated);
+
   return (
     <nav className={styles.navBar}>
       <NavLink
@@ -16,55 +22,7 @@ export function Navbar() {
       >
         <HomeIcon className={styles.icon} />
       </NavLink>
-      <div className={styles.navBarLinks}>
-        <NavLink
-          className={({ isActive }) =>
-            cn(styles.link, {
-              [styles.active]: isActive,
-            })
-          }
-          to="/signin"
-        >
-          Войти
-        </NavLink>
-        <NavLink
-          className={({ isActive }) =>
-            cn(styles.link, {
-              [styles.active]: isActive,
-            })
-          }
-          to="/signup"
-        >
-          Зарегистрироваться
-        </NavLink>
-      </div>
+      {isAuth ? <AuthNavBar /> : <NoAuthNavBar />}
     </nav>
   );
 }
-//добавить когда зашел Пользователь
-//  <NavLink
-//     className={({ isActive }) =>
-//       cn(
-//         styles.link,
-//         {
-//           [styles.active]: isActive,
-//         },
-//       )
-//     }
-//     to="/favorites"
-//   >
-//     Favorites
-//   </NavLink>
-//   <NavLink
-//     className={({ isActive }) =>
-//       cn(
-//         styles.link,
-//         {
-//           [styles.active]: isActive,
-//         },
-//       )
-//     }
-//     to="/history"
-//   >
-//     History
-//   </NavLink>

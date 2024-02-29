@@ -1,5 +1,5 @@
-import { PageSoloCard } from "../../../widgest/PageSoloCard";
+import { SoloCard } from "../../../widgest/SoloCard";
 
 export function SoloCardPage() {
-  return <PageSoloCard />;
+  return <SoloCard />;
 }

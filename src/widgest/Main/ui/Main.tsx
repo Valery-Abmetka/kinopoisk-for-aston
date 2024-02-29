@@ -1,7 +1,6 @@
 import { Link, useLoaderData } from "react-router-dom";
 import styles from "./Main.module.css";
 import { Card } from "../../../entities/index";
-
 import { Props as Item } from "../../../entities/index";
 
 export interface Data {
