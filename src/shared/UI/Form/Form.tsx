@@ -3,8 +3,7 @@ import styles from "./Form.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../../app/providers/store";
 import { useNavigate } from "react-router";
-import { getErrorAuth, signup } from "../../../features/Authorization";
-import { login } from "../../../features/Authorization/actions/AuthActions";
+import { getErrorAuth, login, signup } from "../../../features/Authorization";
 
 interface MyForm {
   email: string;

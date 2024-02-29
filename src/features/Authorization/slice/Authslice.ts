@@ -38,7 +38,7 @@ const authSlice = createSlice({
         state.isAuthenticated = true;
       })
 
-      //Не смог их типизировать но хотел чтобы показывались именно ошибки FIREBASE
+      //Не смог их типизировать но хотел чтобы показывались именно ошибки FIREBASE Могу переписать на обычные ошибки
       //без этого выдавал ошибку
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .addCase(signup.rejected, (state, action: any) => {

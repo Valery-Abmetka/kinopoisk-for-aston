@@ -1,4 +1,4 @@
-import { checkAuth, signup } from "./actions/AuthActions";
+import { checkAuth, login, logout, signup } from "./actions/AuthActions";
 import {
   getIsAuthenticated,
   getEmail,
@@ -12,6 +12,8 @@ import authReducer from "./slice/Authslice";
 export {
   signup,
   checkAuth,
+  logout,
+  login,
   getIsAuthenticated,
   getEmail,
   getIsLoadingAuth,
