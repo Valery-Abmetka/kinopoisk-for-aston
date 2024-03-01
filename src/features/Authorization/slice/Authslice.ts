@@ -21,7 +21,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setAuthorized(state, action) {
-      state.email = action.payload.email;
+      state.email = action.payload;
       state.isAuthenticated = true;
       state.isLoading = false;
     },

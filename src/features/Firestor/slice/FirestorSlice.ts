@@ -3,7 +3,6 @@ import { getDbProfile, setDbProfile } from "..";
 
 interface UserState {
   user: {
-    email: null | string;
     id: null | string;
     favorites: number[];
     history: [];
@@ -14,7 +13,6 @@ interface UserState {
 
 const initialState: UserState = {
   user: {
-    email: null,
     id: null,
     favorites: [],
     history: [],
@@ -33,7 +31,6 @@ const firestorSlice = createSlice({
         state.isBdLoading = true;
       })
       .addCase(setDbProfile.fulfilled, (state, action) => {
-        state.user.email = action.payload.email;
         state.user.id = action.payload.id;
         state.isBdLoading = false;
       })
@@ -46,6 +43,7 @@ const firestorSlice = createSlice({
       })
       .addCase(getDbProfile.fulfilled, (state, action) => {
         state.user.favorites = action.payload.favorites;
+        state.user.history = action.payload.history;
         state.user.id = action.payload.id;
         state.isBdLoading = false;
       })

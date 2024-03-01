@@ -1,8 +1,8 @@
-import { AddFavorites } from "../../../shared";
+import { ButtonAddFavorites } from "../../../shared";
 import styles from "./Card.module.css";
 
 export interface Props {
-  kinopoiskId?: number;
+  kinopoiskId: string;
   nameRu: string;
   genres: Genre[];
   ratingKinopoisk: number;
@@ -24,6 +24,7 @@ export function Card({
   posterUrlPreview,
   genres,
   year,
+  kinopoiskId,
 }: Props) {
   return (
     <div className={styles.card}>
@@ -32,7 +33,7 @@ export function Card({
         style={{ backgroundImage: `url(${posterUrlPreview})` }}
       >
         <div className={styles.rating}>Рейтинг: {ratingKinopoisk || "нет"}</div>
-        <AddFavorites />
+        <ButtonAddFavorites movieId={+kinopoiskId} />
       </div>
       <div className={styles.footer}>
         <div className={styles.title}>{nameRu}</div>

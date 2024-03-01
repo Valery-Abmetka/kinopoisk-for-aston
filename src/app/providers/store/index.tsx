@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { authReducer } from "../../../features/Authorization";
 import { firestoreReducer } from "../../../features/Firestor";
+import { favoriteReducer } from "../../../features/Favorites";
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
     firestore: firestoreReducer,
+    favorite: favoriteReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

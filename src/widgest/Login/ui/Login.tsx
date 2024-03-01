@@ -24,6 +24,7 @@ export function Login() {
 
       if (response.type == "auth/login/fulfilled") {
         navigate("/");
+
         const transformData = {
           email: response.payload.email as string,
         };
