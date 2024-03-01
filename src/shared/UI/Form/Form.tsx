@@ -4,6 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../../app/providers/store";
 import { useNavigate } from "react-router";
 import { getErrorAuth, login, signup } from "../../../features/Authorization";
+import {
+  getDbProfile,
+  setDbProfile,
+} from "../../../features/Firestor/actions/FirestorActions";
+import { UserInfo } from "firebase/auth";
 
 interface MyForm {
   email: string;
@@ -12,6 +17,11 @@ interface MyForm {
 
 interface Props {
   page: "Signup" | "Login";
+}
+
+interface Response {
+  payload: UserInfo;
+  type: string;
 }
 
 export function Form({ page }: Props) {
@@ -31,18 +41,28 @@ export function Form({ page }: Props) {
   const onSubmit: SubmitHandler<MyForm> = async (user) => {
     if (page === "Signup") {
       try {
-        const response = await dispatch(signup(user));
-        if (response.type !== "auth/signup/rejected") {
+        const response = (await dispatch(signup(user))) as Response;
+        if (response.type == "auth/signup/fulfilled") {
+          const transformData = {
+            email: response.payload.email as string,
+            id: response.payload.uid,
+          };
           navigate("/");
+          await dispatch(setDbProfile(transformData));
         }
       } catch (err) {
         throw new Error("ошибка запроса");
       }
     } else if (page === "Login") {
       try {
-        const response = await dispatch(login(user));
-        if (response.type !== "auth/login/rejected") {
+        const response = (await dispatch(login(user))) as Response;
+
+        if (response.type == "auth/login/fulfilled") {
           navigate("/");
+          const transformData = {
+            email: response.payload.email as string,
+          };
+          await dispatch(getDbProfile(transformData.email));
         }
       } catch (err) {
         throw new Error("ошибка запроса");
