@@ -2,7 +2,7 @@ import { ButtonAddFavorites } from "../../../shared";
 import styles from "./Card.module.css";
 
 export interface Props {
-  kinopoiskId: string;
+  kinopoiskId: number;
   nameRu: string;
   genres: Genre[];
   ratingKinopoisk: number;

@@ -18,7 +18,6 @@ export const ButtonAddFavorites = memo(function ButtonAddFavorites({
     <button
       className={cn(styles.button, {
         [styles.active]: isFavorite,
-        [styles.isLoading]: false,
       })}
       onClick={(event) => {
         event.preventDefault();

@@ -16,6 +16,3 @@
 .iconActive {
   color: orange;
 }
-.isLoading {
-  filter: opacity(0.5);
-}
