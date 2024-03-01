@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { authReducer } from "../../../features/Authorization";
-import firestoreReducer from "../../../features/Firestor/slice/FirestorSlice";
+import { firestoreReducer } from "../../../features/Firestor";
 
 export const store = configureStore({
   reducer: {

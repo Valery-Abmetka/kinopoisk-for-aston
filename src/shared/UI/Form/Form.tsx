@@ -4,11 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../../app/providers/store";
 import { useNavigate } from "react-router";
 import { getErrorAuth, login, signup } from "../../../features/Authorization";
-import {
-  getDbProfile,
-  setDbProfile,
-} from "../../../features/Firestor/actions/FirestorActions";
 import { UserInfo } from "firebase/auth";
+import { getDbProfile, setDbProfile } from "../../../features/Firestor";
 
 interface MyForm {
   email: string;

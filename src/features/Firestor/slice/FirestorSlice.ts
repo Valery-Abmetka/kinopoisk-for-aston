@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getDbProfile, setDbProfile } from "../actions/FirestorActions";
+import { getDbProfile, setDbProfile } from "..";
 
 interface UserState {
   user: {
@@ -48,7 +48,6 @@ const firestorSlice = createSlice({
         state.user.favorites = action.payload.favorites;
         state.user.id = action.payload.id;
         state.isBdLoading = false;
-        console.log(action.payload);
       })
       .addCase(getDbProfile.rejected, (state, action) => {
         state.isBdLoading = false;
