@@ -17,6 +17,7 @@ export function SoloCard() {
         ratingKinopoisk={movie.ratingKinopoisk}
         posterUrlPreview={movie.posterUrlPreview}
         year={movie.year}
+        kinopoiskId={movie.kinopoiskId}
       />
       {/* вынести в отдельный компонент */}
       <div className={styles.fullInfo}>

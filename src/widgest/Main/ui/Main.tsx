@@ -1,7 +1,7 @@
 import { Link, useLoaderData } from "react-router-dom";
 import styles from "./Main.module.css";
-import { Card } from "../../../entities/index";
-import { Props as Item } from "../../../entities/index";
+import { Card } from "../../../entities";
+import { Props as Item } from "../../../entities";
 
 export interface Data {
   total: number;
@@ -18,12 +18,12 @@ export function Main() {
         return (
           <Link to={`/${movie.kinopoiskId}`} key={movie.kinopoiskId}>
             <Card
+              kinopoiskId={movie.kinopoiskId}
               nameRu={movie.nameRu}
               ratingKinopoisk={movie.ratingKinopoisk}
               posterUrlPreview={movie.posterUrlPreview}
               genres={movie.genres}
               year={movie.year}
-              kinopoiskId={movie.kinopoiskId}
             />
           </Link>
         );

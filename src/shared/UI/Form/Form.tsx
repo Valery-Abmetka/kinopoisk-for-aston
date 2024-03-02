@@ -1,25 +1,21 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import styles from "./Form.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "../../../app/providers/store";
-import { useNavigate } from "react-router";
-import { getErrorAuth, login, signup } from "../../../features/Authorization";
+import { useSelector } from "react-redux";
 
-interface MyForm {
+import { getErrorAuth } from "../../../features/Authorization";
+
+export interface MyForm {
   email: string;
   password: string;
 }
 
-interface Props {
+export interface Props {
   page: "Signup" | "Login";
+  onSubmit: SubmitHandler<MyForm>;
 }
 
-export function Form({ page }: Props) {
+export function Form({ page, onSubmit }: Props) {
   const error = useSelector(getErrorAuth);
-
-  const dispatch = useDispatch<AppDispatch>();
-
-  const navigate = useNavigate();
 
   const { register, handleSubmit } = useForm<MyForm>({
     defaultValues: {
@@ -28,32 +24,14 @@ export function Form({ page }: Props) {
     },
   });
 
-  const onSubmit: SubmitHandler<MyForm> = async (user) => {
-    if (page === "Signup") {
-      try {
-        const response = await dispatch(signup(user));
-        if (response.type !== "auth/signup/rejected") {
-          navigate("/");
-        }
-      } catch (err) {
-        throw new Error("ошибка запроса");
-      }
-    } else if (page === "Login") {
-      try {
-        const response = await dispatch(login(user));
-        if (response.type !== "auth/login/rejected") {
-          navigate("/");
-        }
-      } catch (err) {
-        throw new Error("ошибка запроса");
-      }
-    }
+  const submitHandler: SubmitHandler<MyForm> = async (user) => {
+    onSubmit(user);
   };
 
   return (
     <div>
       <h2 className={styles.title}>{page}</h2>
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+      <form onSubmit={handleSubmit(submitHandler)} className={styles.form}>
         <div>
           <label htmlFor="email" className={styles.label}>
             Your email

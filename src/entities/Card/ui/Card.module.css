@@ -3,6 +3,7 @@
   border-radius: 21px;
   width: 360px;
   min-width: 360px;
+  max-height: 600px;
 }
 .head {
   position: relative;

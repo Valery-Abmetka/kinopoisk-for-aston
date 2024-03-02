@@ -7,6 +7,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../../../firebase";
 import { setAuthorized } from "../";
+import { getDbProfile } from "../../Firestor";
 interface User {
   email: string;
   password: string;
@@ -50,6 +51,7 @@ export const checkAuth = createAsyncThunk(
     onAuthStateChanged(auth, (user) => {
       if (user && user.email) {
         dispatch(setAuthorized(user.email));
+        dispatch(getDbProfile(user.email));
       } else {
         return rejectWithValue("Authentication check error");
       }

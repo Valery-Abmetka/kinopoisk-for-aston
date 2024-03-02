@@ -1,3 +1,5 @@
+import { Favorites } from "../../../widgest/Favorites";
+
 export function FavoritesPage() {
-  return <div>Избранное</div>;
+  return <Favorites />;
 }
