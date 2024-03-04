@@ -3,8 +3,8 @@ import styles from "./Card.module.css";
 
 export interface Props {
   kinopoiskId: number;
-  nameRu: string | null;
-  genres: Genre[] | null;
+  nameRu: string;
+  genres: Genre[];
   ratingKinopoisk: number;
   year: string;
   posterUrlPreview: string;

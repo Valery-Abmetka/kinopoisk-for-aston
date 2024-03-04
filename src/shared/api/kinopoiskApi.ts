@@ -19,7 +19,7 @@ export const kinopoiskApi = createApi({
   endpoints: (build) => ({
     getInitialMovies: build.query({
       query: () => ({
-        url: "/collections?type=TOP_POPULAR_ALL",
+        url: "/v2.2/films/collections?type=TOP_POPULAR_ALL",
         params: {
           page: 1,
         },
@@ -28,18 +28,15 @@ export const kinopoiskApi = createApi({
     }),
     getMoviesById: build.query({
       query: (id) => ({
-        url: `/${id}`,
+        url: `/v2.2/films/${id}`,
       }),
       transformResponse: transformMovieById,
     }),
     getMoviesBySearch: build.query({
       query: (query) => ({
-        url: `/search-by-keyword`,
-        params: {
-          query: query,
-        },
+        url: `/v2.1/films/search-by-keyword?keyword=${query}&page=1`,
       }),
-      // transformResponse: transformMoviesByQuery,
+      transformResponse: transformMoviesByQuery,
     }),
   }),
 });

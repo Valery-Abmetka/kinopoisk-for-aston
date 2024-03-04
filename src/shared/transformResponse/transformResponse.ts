@@ -15,15 +15,20 @@ export interface Item {
   posterUrlPreview: string | null;
   description: string | null;
   webUrl: string | null;
+  filmId?: number;
 }
 
-export interface Resp {
+export interface RespInitial {
   total: number;
   totalPage: number;
   items: Item[];
 }
+export interface RespSearch {
+  keyword: string;
+  films: Item[];
+}
 
-export const transformInitialMovies = (data: Resp) => {
+export const transformInitialMovies = (data: RespInitial) => {
   return data?.items.map((movie: Item) => ({
     kinopoiskId: movie.kinopoiskId,
     nameRu: movie.nameRu || movie.nameOriginal || movie.nameEn,
@@ -47,17 +52,20 @@ export const transformMovieById = (movie: Item) => {
   };
 };
 
-// export const transformMoviesByQuery = (res) => {
-//   return res.films.map((movie) => {
-//     return {
-//       id: movie.kinopoiskId,
-//       name: movie.nameRu || movie.nameOriginal || movie.nameEn,
-//       genres: movie.genres,
-//       posterUrlPreview: movie.posterUrlPreview,
-//       rating: movie.ratingKinopoisk || movie.ratingImbd,
-//       year: movie.year,
-//       description: movie.description,
-//       webUrl: movie.webUrl,
-//     };
-//   });
-// };
+export const transformMoviesByQuery = (res: RespSearch) => {
+  return {
+    films: res?.films?.map((movie: Item) => {
+      return {
+        kinopoiskId: movie.kinopoiskId || movie.filmId,
+        nameRu: movie.nameRu || movie.nameOriginal || movie.nameEn,
+        genres: movie.genres,
+        posterUrlPreview: movie.posterUrlPreview,
+        ratingKinopoisk: movie.ratingKinopoisk || movie.ratingImbd,
+        year: movie.year,
+        description: movie.description,
+        webUrl: movie.webUrl,
+      };
+    }),
+    keywords: res.keyword,
+  };
+};
