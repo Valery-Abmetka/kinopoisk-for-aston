@@ -11,6 +11,9 @@ export function SearchItems() {
   const searchMovies = useSelector(getSearchMovies);
   const isErrorSearchMovies = useSelector(getSearchIsError);
   const isLoadingSearchMovies = useSelector(getSearchIsLoading);
+  if (!searchMovies.length) {
+    return <h1>ничего не найдено</h1>;
+  }
   return (
     <div>
       {isErrorSearchMovies ? (
