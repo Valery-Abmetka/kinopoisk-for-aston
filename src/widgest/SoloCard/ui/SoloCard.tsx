@@ -1,32 +1,44 @@
-import { useLoaderData } from "react-router-dom";
 import { Card, Props as Item } from "../../../entities";
 import styles from "./SoloCard.module.css";
+import { useGetMoviesByIdQuery } from "../../../shared/api/kinopoiskApi";
+import { useParams } from "react-router-dom";
 interface Movie extends Item {
   description: string;
   webUrl: string;
 }
 
 export function SoloCard() {
-  const movie = useLoaderData() as Movie;
+  const { id } = useParams();
 
-  return (
+  const { movie, isError, isLoading } = useGetMoviesByIdQuery(id, {
+    selectFromResult: ({ data, isError, isLoading }) => ({
+      movie: data as Movie,
+      isError: isError,
+      isLoading: isLoading,
+    }),
+  });
+
+  return isLoading ? (
+    <h1>Loading..</h1>
+  ) : isError ? (
+    <h1>Ошибка получения данных</h1>
+  ) : (
     <div className={styles.soloCard}>
       <Card
-        nameRu={movie.nameRu}
-        genres={movie.genres}
-        ratingKinopoisk={movie.ratingKinopoisk}
-        posterUrlPreview={movie.posterUrlPreview}
-        year={movie.year}
-        kinopoiskId={movie.kinopoiskId}
+        nameRu={movie?.nameRu}
+        genres={movie?.genres}
+        ratingKinopoisk={movie?.ratingKinopoisk}
+        posterUrlPreview={movie?.posterUrlPreview}
+        year={movie?.year}
+        kinopoiskId={movie?.kinopoiskId}
       />
-      {/* вынести в отдельный компонент */}
       <div className={styles.fullInfo}>
-        <div className={styles.description}>Описание: {movie.description}</div>
+        <div className={styles.description}>Описание: {movie?.description}</div>
         <div className={styles.kinopoiskLink}>
           Смотреть на кинопоиске{" "}
           <a
             className={styles.link}
-            href={movie.webUrl}
+            href={movie?.webUrl}
             target="_blank"
             rel="noreferrer"
           >

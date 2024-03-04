@@ -3,15 +3,14 @@ import styles from "./Card.module.css";
 
 export interface Props {
   kinopoiskId: number;
-  nameRu: string;
-  genres: Genre[];
+  nameRu: string | null;
+  genres: Genre[] | null;
   ratingKinopoisk: number;
   year: string;
   posterUrlPreview: string;
-}
-
-export interface Country {
-  country: string;
+  nameOriginal?: string;
+  nameEn?: string;
+  ratingImbd?: string;
 }
 
 export interface Genre {
