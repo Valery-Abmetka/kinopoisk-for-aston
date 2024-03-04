@@ -16,7 +16,8 @@
   background-color: rgb(78, 76, 76);
   border-radius: 10px;
   z-index: 5;
-  position: relative;
+  position: absolute;
+  width: 500px;
 }
 
 .link {
@@ -37,4 +38,8 @@
   color: white;
   width: 30px;
   height: 30px;
+}
+
+.active {
+  display: none;
 }

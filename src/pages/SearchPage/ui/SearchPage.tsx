@@ -1,4 +1,4 @@
-import { SearchItems } from "../../../widgest/Search/ui/SearchItems";
+import { SearchItems } from "../../../widgest/Search";
 
 export function SearchPage() {
   return <SearchItems />;

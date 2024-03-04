@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { useDebounce } from "../../hooks/useDebounce";
-import { useGetMoviesBySearchQuery } from "../../api/kinopoiskApi";
 import { Props as Item, Props } from "../../../entities";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { setResultSearch } from "../../../features/Search/SearchSlice/SearchSlice";
 import styles from "./SearchBar.module.css";
 import { CiSearch as SearchSvg } from "react-icons/ci";
+import { useDebounce, useGetMoviesBySearchQuery } from "../../";
+import { setResultSearch } from "../../../features/Search";
+import cn from "classnames";
 
 interface RespSearch {
   movies: Props[];
@@ -19,6 +19,7 @@ interface RespSearch {
 export function SearchBar() {
   const { handleSubmit } = useForm();
   const [query, setQuery] = useState("");
+  const [isVisible, setIsVisible] = useState(true);
   const debounce = useDebounce(query, 500);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ export function SearchBar() {
   );
 
   function onFormSubmit(data: RespSearch) {
+    setIsVisible(false);
     dispatch(setResultSearch(data));
     navigate(`/search`);
   }
@@ -52,7 +54,10 @@ export function SearchBar() {
           type="text"
           placeholder="search movies..."
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => {
+            setIsVisible(true);
+            setQuery(e.target.value);
+          }}
         />
 
         {
@@ -62,13 +67,18 @@ export function SearchBar() {
           ) : isError ? (
             <h2>Ошибка загрузки саджестов</h2>
           ) : (
-            <div className={styles.sagest}>
+            <div
+              className={cn(styles.sagest, {
+                [styles.active]: !isVisible,
+              })}
+            >
               {movies?.map((movie) => {
                 return (
                   <Link
                     className={styles.link}
                     to={`/movies/${movie.kinopoiskId}`}
                     key={movie.kinopoiskId}
+                    onClick={() => setIsVisible(false)}
                   >
                     <div>{movie.nameRu}</div>
                   </Link>

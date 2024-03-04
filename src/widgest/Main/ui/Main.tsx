@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styles from "./Main.module.css";
 import { Card } from "../../../entities";
 import { Props as Item } from "../../../entities";
-import { useGetInitialMoviesQuery } from "../../../shared/api/kinopoiskApi";
+import { useGetInitialMoviesQuery } from "../../../shared";
 
 export function Main() {
   const { movies, isError, isLoading } = useGetInitialMoviesQuery(null, {

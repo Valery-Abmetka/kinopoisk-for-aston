@@ -1,6 +1,6 @@
 import { Card, Props as Item } from "../../../entities";
+import { useGetMoviesByIdQuery } from "../../../shared";
 import styles from "./SoloCard.module.css";
-import { useGetMoviesByIdQuery } from "../../../shared/api/kinopoiskApi";
 import { useParams } from "react-router-dom";
 interface Movie extends Item {
   description: string;

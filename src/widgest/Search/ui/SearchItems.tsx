@@ -2,10 +2,11 @@ import { Link } from "react-router-dom";
 import { Card } from "../../../entities";
 import { useSelector } from "react-redux";
 import {
+  getSearchMovies,
   getSearchIsError,
   getSearchIsLoading,
-  getSearchMovies,
-} from "../../../features/Search/SearchSelectors/SearchSelector";
+} from "../../../features/Search";
+import styles from "./SearchItems.module.css";
 
 export function SearchItems() {
   const searchMovies = useSelector(getSearchMovies);
@@ -15,7 +16,7 @@ export function SearchItems() {
     return <h1>ничего не найдено</h1>;
   }
   return (
-    <div>
+    <div className={styles.films}>
       {isErrorSearchMovies ? (
         <h1>Loading..</h1>
       ) : isLoadingSearchMovies ? (
