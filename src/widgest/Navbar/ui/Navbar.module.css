@@ -1,6 +1,7 @@
 .navBar {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  height: 70px;
 }
 
 .link {

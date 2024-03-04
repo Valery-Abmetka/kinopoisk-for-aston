@@ -1,3 +1,5 @@
+import { SearchItems } from "../../../widgest/Search";
+
 export function SearchPage() {
-  return <h2>Страница поиска</h2>;
+  return <SearchItems />;
 }

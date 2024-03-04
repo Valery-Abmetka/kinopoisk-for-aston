@@ -1,26 +1,28 @@
 import { Link } from "react-router-dom";
-import styles from "./Main.module.css";
 import { Card } from "../../../entities";
-import { Props as Item } from "../../../entities";
-import { useGetInitialMoviesQuery } from "../../../shared";
+import { useSelector } from "react-redux";
+import {
+  getSearchMovies,
+  getSearchIsError,
+  getSearchIsLoading,
+} from "../../../features/Search";
+import styles from "./SearchItems.module.css";
 
-export function Main() {
-  const { movies, isError, isLoading } = useGetInitialMoviesQuery(null, {
-    selectFromResult: ({ data, isError, isLoading }) => ({
-      movies: data as Item[],
-      isError: isError,
-      isLoading: isLoading,
-    }),
-  });
-
+export function SearchItems() {
+  const searchMovies = useSelector(getSearchMovies);
+  const isErrorSearchMovies = useSelector(getSearchIsError);
+  const isLoadingSearchMovies = useSelector(getSearchIsLoading);
+  if (!searchMovies.length) {
+    return <h1>ничего не найдено</h1>;
+  }
   return (
     <div className={styles.films}>
-      {isLoading ? (
+      {isErrorSearchMovies ? (
         <h1>Loading..</h1>
-      ) : isError ? (
+      ) : isLoadingSearchMovies ? (
         <h1>Ошибка получения данных</h1>
       ) : (
-        movies?.map((movie) => {
+        searchMovies?.map((movie) => {
           return (
             <Link to={`/movies/${movie.kinopoiskId}`} key={movie.kinopoiskId}>
               <Card

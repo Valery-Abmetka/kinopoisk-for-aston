@@ -8,10 +8,9 @@ export interface Props {
   ratingKinopoisk: number;
   year: string;
   posterUrlPreview: string;
-}
-
-export interface Country {
-  country: string;
+  nameOriginal?: string;
+  nameEn?: string;
+  ratingImbd?: string;
 }
 
 export interface Genre {
