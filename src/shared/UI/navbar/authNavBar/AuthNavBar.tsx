@@ -3,7 +3,7 @@ import styles from "./AuthNavBar.module.css";
 import cn from "classnames";
 
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../../app/providers/store";
+import { AppDispatch } from "../../../../app/providers/store/store";
 import { logout } from "../../../../features/Authorization";
 
 export function AuthNavBar() {

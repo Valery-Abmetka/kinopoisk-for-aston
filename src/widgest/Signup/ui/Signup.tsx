@@ -4,7 +4,7 @@ import { setDbProfile } from "../../../features/Firestor";
 import { Form } from "../../../shared";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { AppDispatch } from "../../../app/providers/store";
+import { AppDispatch } from "../../../app/providers/store/store";
 import { UserInfo } from "firebase/auth";
 
 export interface Response {

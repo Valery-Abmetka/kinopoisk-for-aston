@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../app/providers/store";
+import { AppDispatch } from "../../app/providers/store/store";
 import { checkAuth } from "../../features/Authorization";
 
 export const useAuthCheck = (): void => {

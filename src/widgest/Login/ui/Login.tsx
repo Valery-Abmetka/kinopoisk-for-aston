@@ -1,5 +1,5 @@
 import { Form } from "../../../shared";
-import { AppDispatch } from "../../../app/providers/store";
+import { AppDispatch } from "../../../app/providers/store/store";
 import { useDispatch } from "react-redux";
 import { SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";

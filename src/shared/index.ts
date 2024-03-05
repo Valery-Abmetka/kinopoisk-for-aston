@@ -1,4 +1,3 @@
-import { Button } from "./UI/Button/Button";
 import { ButtonAddFavorites } from "./UI/ButtonAddFavorite/ButtonAddFavorits";
 import { Form } from "./UI/Form/Form";
 import { SearchBar } from "./UI/SearchBar/SearchBar";
@@ -14,7 +13,6 @@ import { useDebounce } from "./hooks/useDebounce";
 import { useFavorites } from "./hooks/useFavorites";
 
 export {
-  Button,
   ButtonAddFavorites,
   Form,
   AuthNavBar,

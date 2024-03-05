@@ -9,7 +9,7 @@ import { SignupPage } from "../../../pages/SignupPage/index.ts";
 import { ErrorPage } from "../../../pages/ErrorPage/index.ts";
 import { SoloCardPage } from "../../../pages/SoloCardPage/index.ts";
 
-const router = createBrowserRouter([
+export const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
@@ -31,4 +31,3 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-export default router;

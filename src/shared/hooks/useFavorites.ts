@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "../../app/providers/store";
+import { AppDispatch } from "../../app/providers/store/store";
 import { useCallback } from "react";
 import { addToFavorites, deleteFromFavorites } from "../../features/Favorites";
 import { getEmail } from "../../features/Authorization";
