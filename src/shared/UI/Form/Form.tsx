@@ -1,7 +1,5 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import styles from "./Form.module.css";
-import { useSelector } from "react-redux";
-import { getErrorAuth } from "../../reducers/Authorization";
 
 export interface MyForm {
   email: string;
@@ -11,11 +9,10 @@ export interface MyForm {
 export interface Props {
   page: "Signup" | "Login";
   onSubmit: SubmitHandler<MyForm>;
+  error: string | undefined;
 }
 
-export function Form({ page, onSubmit }: Props) {
-  const error = useSelector(getErrorAuth);
-
+export function Form({ page, onSubmit, error }: Props) {
   const { register, handleSubmit } = useForm<MyForm>({
     defaultValues: {
       email: "",
