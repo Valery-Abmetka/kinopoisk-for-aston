@@ -12,7 +12,7 @@ interface AuthState {
 const initialState: AuthState = {
   email: null,
   isAuthenticated: false,
-  isLoading: false,
+  isLoading: true,
   error: undefined,
 };
 
@@ -23,6 +23,9 @@ const authSlice = createSlice({
     setAuthorized(state, action) {
       state.email = action.payload;
       state.isAuthenticated = true;
+      state.isLoading = false;
+    },
+    setLoading(state) {
       state.isLoading = false;
     },
   },
@@ -73,12 +76,12 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload.code;
       })
-      .addCase(checkAuth.rejected, (state) => {
-        state.isLoading = false;
+      .addCase(checkAuth.pending, (state) => {
+        state.isLoading = true;
       });
   },
 });
 
-export const { setAuthorized } = authSlice.actions;
+export const { setAuthorized, setLoading } = authSlice.actions;
 
 export default authSlice.reducer;

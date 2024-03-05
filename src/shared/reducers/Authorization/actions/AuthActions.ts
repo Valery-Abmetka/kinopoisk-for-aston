@@ -9,6 +9,7 @@ import {
 import { setAuthorized } from "../";
 import { getDbProfile } from "../../Firestor";
 import { auth } from "../../../../firebase";
+import { setLoading } from "../slice/Authslice";
 interface User {
   email: string;
   password: string;
@@ -49,11 +50,12 @@ export const logout = createAsyncThunk("auth/logout", async () => {
 export const checkAuth = createAsyncThunk(
   "auth/checkAuth",
   async (_, { dispatch, rejectWithValue }) => {
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
       if (user && user.email) {
         dispatch(setAuthorized(user.email));
         dispatch(getDbProfile(user.email));
       } else {
+        dispatch(setLoading());
         return rejectWithValue("Authentication check error");
       }
     });
