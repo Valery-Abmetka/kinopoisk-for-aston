@@ -7,9 +7,11 @@ import { useSelector } from "react-redux";
 import { AuthNavBar, NoAuthNavBar } from "../../../shared";
 import { SearchBar } from "../../../shared/UI/SearchBar/SearchBar";
 import { getIsAuthenticated } from "../../../shared/reducers/Authorization";
+import { useLogout } from "../../../shared/hooks/useLogout";
 
 export function Navbar() {
   const isAuth = useSelector(getIsAuthenticated);
+  const handleLogout = useLogout();
 
   return (
     <nav className={styles.navBar}>
@@ -24,7 +26,7 @@ export function Navbar() {
         <HomeIcon className={styles.icon} />
       </NavLink>
       <SearchBar />
-      {isAuth ? <AuthNavBar /> : <NoAuthNavBar />}
+      {isAuth ? <AuthNavBar handleLogout={handleLogout} /> : <NoAuthNavBar />}
     </nav>
   );
 }
