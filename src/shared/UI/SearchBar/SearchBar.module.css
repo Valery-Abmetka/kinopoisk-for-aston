@@ -12,18 +12,6 @@
   opacity: 1;
 }
 
-.sagest {
-  background-color: rgb(78, 76, 76);
-  border-radius: 10px;
-  z-index: 5;
-  position: absolute;
-  width: 500px;
-}
-
-.link {
-  color: black;
-  font-size: x-large;
-}
 .form {
   display: flex;
   align-items: center;
@@ -38,8 +26,4 @@
   color: white;
   width: 30px;
   height: 30px;
-}
-
-.active {
-  display: none;
 }
