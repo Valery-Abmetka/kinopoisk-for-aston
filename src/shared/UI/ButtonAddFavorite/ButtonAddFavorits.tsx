@@ -6,11 +6,13 @@ import cn from "classnames";
 
 interface Props {
   isFavorite: boolean;
+  isLoadingButton: boolean;
   handleFavoriteButtonClick: () => void;
 }
 
 export const ButtonAddFavorites = memo(function ButtonAddFavorites({
   isFavorite,
+  isLoadingButton,
   handleFavoriteButtonClick,
 }: Props) {
   return (
@@ -26,6 +28,7 @@ export const ButtonAddFavorites = memo(function ButtonAddFavorites({
       <StarIcon
         className={cn(styles.icon, {
           [styles.iconActive]: isFavorite,
+          [styles.isLoading]: isLoadingButton,
         })}
       />
     </button>

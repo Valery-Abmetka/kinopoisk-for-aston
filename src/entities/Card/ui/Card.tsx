@@ -25,7 +25,8 @@ export function Card({
   year,
   kinopoiskId,
 }: Props) {
-  const { isFavorite, handleFavoriteButtonClick } = useFavorites(kinopoiskId);
+  const { isFavorite, isLoadingButton, handleFavoriteButtonClick } =
+    useFavorites(kinopoiskId);
   return (
     <div className={styles.card}>
       <div
@@ -35,6 +36,7 @@ export function Card({
         <div className={styles.rating}>Рейтинг: {ratingKinopoisk || "нет"}</div>
         <ButtonAddFavorites
           isFavorite={isFavorite}
+          isLoadingButton={isLoadingButton}
           handleFavoriteButtonClick={handleFavoriteButtonClick}
         />
       </div>
