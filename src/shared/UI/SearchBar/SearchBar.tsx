@@ -34,7 +34,9 @@ export function SearchBar({
           }}
         />
 
-        <Suggest isVisible={isVisibleSuggest} resultSearch={resultSearch} />
+        {query && (
+          <Suggest isVisible={isVisibleSuggest} resultSearch={resultSearch} />
+        )}
       </div>
       <button className={styles.button} type="submit">
         <SearchSvg className={styles.svg} />

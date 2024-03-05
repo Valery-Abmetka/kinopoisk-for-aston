@@ -9,10 +9,12 @@ interface Props {
 }
 
 export function Suggest({ resultSearch, isVisible }: Props) {
+  if (resultSearch?.isError) {
+    return <h2>Ошибка загрузки саджестов</h2>;
+  }
+
   return resultSearch?.isLoading ? (
     <h2>загрузка</h2>
-  ) : resultSearch?.isError ? (
-    <h2>Ошибка загрузки саджестов</h2>
   ) : (
     <div
       className={cn(styles.sagest, {
