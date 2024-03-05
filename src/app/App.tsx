@@ -2,8 +2,9 @@ import { Outlet } from "react-router-dom";
 import "./App.css";
 import { Navbar } from "../widgest/Navbar";
 import { useSelector } from "react-redux";
-import { getIsLoadingAuth } from "../features/Authorization";
+
 import { useAuthCheck } from "../shared";
+import { getIsLoadingAuth } from "../shared/reducers/Authorization";
 
 function App() {
   useAuthCheck();

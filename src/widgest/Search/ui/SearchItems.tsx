@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { Card } from "../../../entities";
 import { useSelector } from "react-redux";
+import styles from "./SearchItems.module.css";
 import {
   getSearchMovies,
   getSearchIsError,
   getSearchIsLoading,
-} from "../../../features/Search";
-import styles from "./SearchItems.module.css";
+} from "../../../shared/reducers/Search";
 
 export function SearchItems() {
   const searchMovies = useSelector(getSearchMovies);

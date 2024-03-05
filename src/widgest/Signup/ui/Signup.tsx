@@ -1,11 +1,12 @@
 import { SubmitHandler } from "react-hook-form";
-import { signup } from "../../../features/Authorization";
-import { setDbProfile } from "../../../features/Firestor";
+
 import { Form } from "../../../shared";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { AppDispatch } from "../../../app/providers/store";
+import { AppDispatch } from "../../../app/providers/store/store";
 import { UserInfo } from "firebase/auth";
+import { getErrorAuth, signup } from "../../../shared/reducers/Authorization";
+import { setDbProfile } from "../../../shared/reducers/Firestor";
 
 export interface Response {
   payload: UserInfo;
@@ -20,6 +21,7 @@ export function Signup() {
   const dispatch = useDispatch<AppDispatch>();
 
   const navigate = useNavigate();
+  const error = useSelector(getErrorAuth);
 
   const submitHandler: SubmitHandler<MyForm> = async (user) => {
     try {
@@ -36,5 +38,5 @@ export function Signup() {
       throw new Error("ошибка запроса");
     }
   };
-  return <Form onSubmit={submitHandler} page="Signup" />;
+  return <Form error={error} onSubmit={submitHandler} page="Signup" />;
 }

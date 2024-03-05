@@ -3,17 +3,16 @@ import styles from "./ButtonAddFavorites.module.css";
 import { memo } from "react";
 
 import cn from "classnames";
-import { useFavorites } from "../../";
 
 interface Props {
-  movieId: number;
+  isFavorite: boolean;
+  handleFavoriteButtonClick: () => void;
 }
 
 export const ButtonAddFavorites = memo(function ButtonAddFavorites({
-  movieId,
+  isFavorite,
+  handleFavoriteButtonClick,
 }: Props) {
-  const { isFavorite, handleFavoriteButtonClick } = useFavorites(movieId);
-
   return (
     <button
       className={cn(styles.button, {

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Props as Item } from "../../../entities";
+import { Props as Item } from "../../../../entities";
 
 interface searchState {
   movies: Item[];

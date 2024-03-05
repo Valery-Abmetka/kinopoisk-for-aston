@@ -1,51 +1,25 @@
-import { useState } from "react";
-import { Props as Item, Props } from "../../../entities";
-import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
 import styles from "./SearchBar.module.css";
 import { CiSearch as SearchSvg } from "react-icons/ci";
-import { useDebounce, useGetMoviesBySearchQuery } from "../../";
-import { setResultSearch } from "../../../features/Search";
-import cn from "classnames";
+import { Item } from "../../api/kinopoiskApi/transformResponse/transformResponse";
+import { Suggest } from "../Suggest/suggest";
+import { useState } from "react";
 
-interface RespSearch {
-  movies: Props[];
-  isError: boolean;
-  isLoading: boolean;
-  keywords: string | undefined;
-}
-
-export function SearchBar() {
+export function SearchBar({
+  query,
+  setQuery,
+  resultSearch,
+  onFormSubmit,
+}: Props) {
   const { handleSubmit } = useForm();
-  const [query, setQuery] = useState("");
-  const [isVisible, setIsVisible] = useState(true);
-  const debounce = useDebounce(query, 500);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { movies, isError, isLoading, keywords } = useGetMoviesBySearchQuery(
-    debounce,
-    {
-      selectFromResult: ({ data, isError, isLoading }) => ({
-        movies: data?.films as Item[],
-        isError: isError,
-        isLoading: isLoading,
-        keywords: data?.keywords,
-      }),
-    },
-  );
-
-  function onFormSubmit(data: RespSearch) {
-    setIsVisible(false);
-    dispatch(setResultSearch(data));
-    navigate(`/search`);
-  }
+  const [isVisibleSuggest, setIsVisibleSuggest] = useState(false);
 
   return (
     <form
-      onSubmit={handleSubmit(() =>
-        onFormSubmit({ movies, isError, isLoading, keywords }),
-      )}
+      onSubmit={handleSubmit(() => {
+        setIsVisibleSuggest(false);
+        onFormSubmit(resultSearch);
+      })}
       className={styles.form}
     >
       <div>
@@ -55,42 +29,31 @@ export function SearchBar() {
           placeholder="search movies..."
           value={query}
           onChange={(e) => {
-            setIsVisible(true);
+            setIsVisibleSuggest(true);
             setQuery(e.target.value);
           }}
         />
 
-        {
-          //понимаю что тяжело читать потом перепишу
-          !query ? null : isLoading ? (
-            <h2>загрузка</h2>
-          ) : isError ? (
-            <h2>Ошибка загрузки саджестов</h2>
-          ) : (
-            <div
-              className={cn(styles.sagest, {
-                [styles.active]: !isVisible,
-              })}
-            >
-              {movies?.map((movie) => {
-                return (
-                  <Link
-                    className={styles.link}
-                    to={`/movies/${movie.kinopoiskId}`}
-                    key={movie.kinopoiskId}
-                    onClick={() => setIsVisible(false)}
-                  >
-                    <div>{movie.nameRu}</div>
-                  </Link>
-                );
-              })}
-            </div>
-          )
-        }
+        {query && (
+          <Suggest isVisible={isVisibleSuggest} resultSearch={resultSearch} />
+        )}
       </div>
       <button className={styles.button} type="submit">
         <SearchSvg className={styles.svg} />
       </button>
     </form>
   );
+}
+
+interface Props {
+  query: string;
+  setQuery: React.Dispatch<React.SetStateAction<string>>;
+  resultSearch: ResultSearch;
+  onFormSubmit: (data: ResultSearch) => void;
+}
+export interface ResultSearch {
+  movies: Item[];
+  isError: boolean;
+  isLoading: boolean;
+  keywords: string | undefined;
 }

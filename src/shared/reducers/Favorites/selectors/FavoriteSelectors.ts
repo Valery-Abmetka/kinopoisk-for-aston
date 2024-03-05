@@ -1,4 +1,4 @@
-import { RootState } from "../../../app/providers/store";
+import { RootState } from "../../../../app/providers/store/store";
 
 export const isLoadingFavoriteButton = (state: RootState) =>
   state.favorite.isLoading;

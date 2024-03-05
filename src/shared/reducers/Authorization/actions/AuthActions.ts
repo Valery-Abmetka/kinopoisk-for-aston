@@ -5,9 +5,10 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { auth } from "../../../firebase";
+
 import { setAuthorized } from "../";
 import { getDbProfile } from "../../Firestor";
+import { auth } from "../../../../firebase";
 interface User {
   email: string;
   password: string;

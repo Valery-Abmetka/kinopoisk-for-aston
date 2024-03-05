@@ -1,12 +1,13 @@
 import { Form } from "../../../shared";
-import { AppDispatch } from "../../../app/providers/store";
-import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../../app/providers/store/store";
+import { useDispatch, useSelector } from "react-redux";
 import { SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { login } from "../../../features/Authorization";
-import { getDbProfile } from "../../../features/Firestor";
+
 import { MyForm } from "../../../shared/UI/Form/Form";
 import { UserInfo } from "firebase/auth";
+import { getErrorAuth, login } from "../../../shared/reducers/Authorization";
+import { getDbProfile } from "../../../shared/reducers/Firestor";
 
 export interface Response {
   payload: UserInfo;
@@ -17,6 +18,7 @@ export function Login() {
   const dispatch = useDispatch<AppDispatch>();
 
   const navigate = useNavigate();
+  const error = useSelector(getErrorAuth);
 
   const submitHandler: SubmitHandler<MyForm> = async (user) => {
     try {
@@ -35,5 +37,5 @@ export function Login() {
     }
   };
 
-  return <Form page="Login" onSubmit={submitHandler} />;
+  return <Form error={error} page="Login" onSubmit={submitHandler} />;
 }

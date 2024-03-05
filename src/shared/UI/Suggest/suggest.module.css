@@ -1,0 +1,16 @@
+.sagest {
+  background-color: rgb(78, 76, 76);
+  border-radius: 10px;
+  z-index: 5;
+  position: absolute;
+  width: 500px;
+}
+
+.link {
+  color: black;
+  font-size: x-large;
+}
+
+.active {
+  display: none;
+}

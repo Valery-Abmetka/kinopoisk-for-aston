@@ -2,14 +2,15 @@ import { NavLink } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import cn from "classnames";
 import { MdLocalMovies as HomeIcon } from "react-icons/md";
-
 import { useSelector } from "react-redux";
-import { getIsAuthenticated } from "../../../features/Authorization";
 import { AuthNavBar, NoAuthNavBar } from "../../../shared";
-import { SearchBar } from "../../../shared/UI/SearchBar/SearchBar";
+import { getIsAuthenticated } from "../../../shared/reducers/Authorization";
+import { useLogout } from "../../../shared/hooks/useLogout";
+import { Search } from "../../../features/Search/Search";
 
 export function Navbar() {
   const isAuth = useSelector(getIsAuthenticated);
+  const handleLogout = useLogout();
 
   return (
     <nav className={styles.navBar}>
@@ -23,8 +24,8 @@ export function Navbar() {
       >
         <HomeIcon className={styles.icon} />
       </NavLink>
-      <SearchBar />
-      {isAuth ? <AuthNavBar /> : <NoAuthNavBar />}
+      <Search />
+      {isAuth ? <AuthNavBar handleLogout={handleLogout} /> : <NoAuthNavBar />}
     </nav>
   );
 }

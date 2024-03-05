@@ -4,7 +4,7 @@ import {
   transformInitialMovies,
   transformMovieById,
   transformMoviesByQuery,
-} from "../transformResponse/transformResponse";
+} from "./transformResponse/transformResponse";
 
 export const kinopoiskApi = createApi({
   reducerPath: "kinopoiskApi",

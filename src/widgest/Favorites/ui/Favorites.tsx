@@ -2,7 +2,7 @@ import styles from "./Favorites.module.css";
 
 import { Props as Item } from "../../../entities/";
 import { useSelector } from "react-redux";
-import { getUser } from "../../../features/Firestor";
+import { getUser } from "../../../shared/reducers/Firestor";
 
 export interface Data {
   total: number;
