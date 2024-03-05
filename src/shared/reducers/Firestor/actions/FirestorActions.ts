@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { DocumentData, doc, getDoc, setDoc } from "firebase/firestore";
-import { db } from "../../../app/firebase/firebase";
+import { db } from "../../../../firebase";
 
 interface User {
   email: string;

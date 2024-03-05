@@ -4,9 +4,9 @@ import cn from "classnames";
 import { MdLocalMovies as HomeIcon } from "react-icons/md";
 
 import { useSelector } from "react-redux";
-import { getIsAuthenticated } from "../../../features/Authorization";
 import { AuthNavBar, NoAuthNavBar } from "../../../shared";
 import { SearchBar } from "../../../shared/UI/SearchBar/SearchBar";
+import { getIsAuthenticated } from "../../../shared/reducers/Authorization";
 
 export function Navbar() {
   const isAuth = useSelector(getIsAuthenticated);

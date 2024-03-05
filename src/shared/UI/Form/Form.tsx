@@ -1,8 +1,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import styles from "./Form.module.css";
 import { useSelector } from "react-redux";
-
-import { getErrorAuth } from "../../../features/Authorization";
+import { getErrorAuth } from "../../reducers/Authorization";
 
 export interface MyForm {
   email: string;

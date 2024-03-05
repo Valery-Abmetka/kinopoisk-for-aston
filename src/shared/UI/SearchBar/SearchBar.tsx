@@ -6,8 +6,9 @@ import { useDispatch } from "react-redux";
 import styles from "./SearchBar.module.css";
 import { CiSearch as SearchSvg } from "react-icons/ci";
 import { useDebounce, useGetMoviesBySearchQuery } from "../../";
-import { setResultSearch } from "../../../features/Search";
+
 import cn from "classnames";
+import { setResultSearch } from "../../reducers/Search";
 
 interface RespSearch {
   movies: Props[];

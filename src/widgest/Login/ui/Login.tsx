@@ -3,10 +3,11 @@ import { AppDispatch } from "../../../app/providers/store/store";
 import { useDispatch } from "react-redux";
 import { SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { login } from "../../../features/Authorization";
-import { getDbProfile } from "../../../features/Firestor";
+
 import { MyForm } from "../../../shared/UI/Form/Form";
 import { UserInfo } from "firebase/auth";
+import { login } from "../../../shared/reducers/Authorization";
+import { getDbProfile } from "../../../shared/reducers/Firestor";
 
 export interface Response {
   payload: UserInfo;

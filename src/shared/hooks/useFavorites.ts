@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../app/providers/store/store";
 import { useCallback } from "react";
-import { addToFavorites, deleteFromFavorites } from "../../features/Favorites";
-import { getEmail } from "../../features/Authorization";
-import { getDbProfile, getUser } from "../../features/Firestor";
-import { isLoadingFavoriteButton } from "../../features/Favorites/selectors/FavoriteSelectors";
+import { getEmail } from "../reducers/Authorization";
+import { deleteFromFavorites, addToFavorites } from "../reducers/Favorites";
+import { isLoadingFavoriteButton } from "../reducers/Favorites/selectors/FavoriteSelectors";
+import { getUser, getDbProfile } from "../reducers/Firestor";
 
 export function useFavorites(movieId: number) {
   const dispatch = useDispatch<AppDispatch>();

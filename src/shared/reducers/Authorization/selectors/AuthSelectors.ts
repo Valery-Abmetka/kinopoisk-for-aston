@@ -1,4 +1,4 @@
-import { RootState } from "../../../app/providers/store/store";
+import { RootState } from "../../../../app/providers/store/store";
 
 export const getIsAuthenticated = (state: RootState) =>
   state.auth.isAuthenticated;

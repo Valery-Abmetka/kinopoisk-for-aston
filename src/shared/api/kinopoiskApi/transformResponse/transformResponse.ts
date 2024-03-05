@@ -1,4 +1,4 @@
-import { Genre } from "../../entities/Card/ui/Card";
+import { Genre } from "../../../../entities/Card/ui/Card";
 
 export interface Item {
   kinopoiskId: number;

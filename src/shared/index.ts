@@ -7,7 +7,7 @@ import {
   useGetInitialMoviesQuery,
   useGetMoviesBySearchQuery,
   useGetMoviesByIdQuery,
-} from "./api/kinopoiskApi";
+} from "./api/kinopoiskApi/kinopoiskApi";
 import { useAuthCheck } from "./hooks/useCheckAuth";
 import { useDebounce } from "./hooks/useDebounce";
 import { useFavorites } from "./hooks/useFavorites";

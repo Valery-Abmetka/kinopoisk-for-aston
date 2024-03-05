@@ -1,11 +1,12 @@
 import { SubmitHandler } from "react-hook-form";
-import { signup } from "../../../features/Authorization";
-import { setDbProfile } from "../../../features/Firestor";
+
 import { Form } from "../../../shared";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { AppDispatch } from "../../../app/providers/store/store";
 import { UserInfo } from "firebase/auth";
+import { signup } from "../../../shared/reducers/Authorization";
+import { setDbProfile } from "../../../shared/reducers/Firestor";
 
 export interface Response {
   payload: UserInfo;

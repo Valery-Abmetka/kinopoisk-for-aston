@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { authReducer } from "../../../features/Authorization";
-import { firestoreReducer } from "../../../features/Firestor";
-import { favoriteReducer } from "../../../features/Favorites";
-import { kinopoiskApi } from "../../../shared/api/kinopoiskApi";
-import searchReducer from "../../../features/Search/SearchSlice/SearchSlice";
+import { kinopoiskApi } from "../../../shared/api/kinopoiskApi/kinopoiskApi";
+import { authReducer } from "../../../shared/reducers/Authorization";
+import { favoriteReducer } from "../../../shared/reducers/Favorites";
+import { firestoreReducer } from "../../../shared/reducers/Firestor";
+import { searchReducer } from "../../../shared/reducers/Search";
 
 export const store = configureStore({
   reducer: {

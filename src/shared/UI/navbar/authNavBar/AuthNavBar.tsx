@@ -1,10 +1,9 @@
 import { Link, NavLink } from "react-router-dom";
 import styles from "./AuthNavBar.module.css";
 import cn from "classnames";
-
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../app/providers/store/store";
-import { logout } from "../../../../features/Authorization";
+import { logout } from "../../../reducers/Authorization";
 
 export function AuthNavBar() {
   const dispatch = useDispatch<AppDispatch>();
