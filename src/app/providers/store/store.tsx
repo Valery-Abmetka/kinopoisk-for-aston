@@ -4,6 +4,7 @@ import { authReducer } from "../../../shared/reducers/Authorization";
 import { favoriteReducer } from "../../../shared/reducers/Favorites";
 import { firestoreReducer } from "../../../shared/reducers/Firestor";
 import { searchReducer } from "../../../shared/reducers/Search";
+import { historyReducer } from "../../../shared/reducers/History/";
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     firestore: firestoreReducer,
     favorite: favoriteReducer,
     search: searchReducer,
+    history: historyReducer,
     [kinopoiskApi.reducerPath]: kinopoiskApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

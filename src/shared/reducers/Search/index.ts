@@ -1,7 +1,6 @@
 import {
   getSearchIsError,
   getSearchIsLoading,
-  getSearchKeywords,
   getSearchMovies,
 } from "./SearchSelectors/SearchSelector";
 import { setResultSearch } from "./SearchSlice/SearchSlice";
@@ -13,5 +12,4 @@ export {
   getSearchMovies,
   getSearchIsLoading,
   getSearchIsError,
-  getSearchKeywords,
 };

@@ -1,3 +1,5 @@
+import { History } from "../../../widgest/History";
+
 export function HistoryPage() {
-  return <h2>История</h2>;
+  return <History />;
 }

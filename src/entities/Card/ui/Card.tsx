@@ -26,6 +26,7 @@ export function Card({
   kinopoiskId,
 }: Props) {
   const { isFavorite, handleFavoriteButtonClick } = useFavorites(kinopoiskId);
+
   return (
     <div className={styles.card}>
       <div

@@ -55,5 +55,5 @@ export interface ResultSearch {
   movies: Item[];
   isError: boolean;
   isLoading: boolean;
-  keywords: string | undefined;
+  keyword: string | undefined;
 }

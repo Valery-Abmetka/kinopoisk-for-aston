@@ -1,0 +1,24 @@
+.history {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: center;
+  margin-top: 50px;
+}
+.link {
+  color: #d05bda;
+  font-size: xx-large;
+}
+
+.icon {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.block {
+  display: flex;
+  align-items: center;
+  gap: inherit;
+}
