@@ -5,12 +5,14 @@ import {
 } from "../actions/FavoritesActions";
 
 interface UserState {
-  isLoading: boolean;
+  isDeletedLoading: boolean;
+  isAddedLoading: boolean;
   error: string | undefined;
 }
 
 const initialState: UserState = {
-  isLoading: false,
+  isDeletedLoading: false,
+  isAddedLoading: false,
   error: undefined,
 };
 
@@ -21,23 +23,23 @@ const favoriteSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(addToFavorites.pending, (state) => {
-        state.isLoading = true;
+        state.isAddedLoading = true;
       })
       .addCase(addToFavorites.fulfilled, (state) => {
-        state.isLoading = false;
+        state.isAddedLoading = false;
       })
       .addCase(addToFavorites.rejected, (state, action) => {
-        state.isLoading = false;
+        state.isAddedLoading = false;
         state.error = action.error.message;
       })
       .addCase(deleteFromFavorites.pending, (state) => {
-        state.isLoading = true;
+        state.isDeletedLoading = true;
       })
       .addCase(deleteFromFavorites.fulfilled, (state) => {
-        state.isLoading = false;
+        state.isDeletedLoading = false;
       })
       .addCase(deleteFromFavorites.rejected, (state, action) => {
-        state.isLoading = false;
+        state.isDeletedLoading = false;
         state.error = action.error.message;
       });
   },

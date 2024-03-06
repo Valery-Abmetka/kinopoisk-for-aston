@@ -3,7 +3,6 @@ import { AppDispatch } from "../../app/providers/store/store";
 import { useCallback } from "react";
 import { getEmail } from "../reducers/Authorization";
 import { deleteFromFavorites, addToFavorites } from "../reducers/Favorites";
-import { isLoadingFavoriteButton } from "../reducers/Favorites/selectors/FavoriteSelectors";
 import { getUser, getDbProfile } from "../reducers/Firestor";
 
 export function useFavorites(movieId: number) {
@@ -11,7 +10,6 @@ export function useFavorites(movieId: number) {
 
   const email = useSelector(getEmail) as string;
   const { favorites } = useSelector(getUser);
-  const isLoadingButton = useSelector(isLoadingFavoriteButton);
   let isFavorite: boolean = false;
   isFavorite = favorites.includes(movieId);
 
@@ -27,7 +25,6 @@ export function useFavorites(movieId: number) {
 
   return {
     isFavorite,
-    isLoadingButton,
     handleFavoriteButtonClick,
   };
 }
