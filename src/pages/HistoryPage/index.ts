@@ -1,2 +1,3 @@
 import { HistoryPage } from "./ui/HistoryPage";
-export { HistoryPage };
+
+export default HistoryPage;

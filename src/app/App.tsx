@@ -9,10 +9,10 @@ import { ErrorBoundary } from "react-error-boundary";
 function App() {
   useAuthCheck();
   const isLoadingCheckAuth = useSelector(getIsLoadingAuth);
-  if (isLoadingCheckAuth) {
-    <h1>Загрузка</h1>;
-  }
-  return (
+
+  return isLoadingCheckAuth ? (
+    <h1>Загрузка</h1>
+  ) : (
     <ErrorBoundary
       fallback={<div>Мы уже знаем о проблеме и стараемся ее решить</div>}
     >

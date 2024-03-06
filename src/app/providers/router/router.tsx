@@ -1,13 +1,22 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Main } from "../../../widgest/Main/index.ts";
+import { lazy } from "react";
 import App from "../../App.tsx";
-import { FavoritesPage } from "../../../pages/FavoritesPage/index.ts";
-import { HistoryPage } from "../../../pages/HistoryPage/index.ts";
-import { SearchPage } from "../../../pages/SearchPage/index.ts";
-import { LoginPage } from "../../../pages/LoginPage/index.ts";
-import { SignupPage } from "../../../pages/SignupPage/index.ts";
-import { ErrorPage } from "../../../pages/ErrorPage/index.ts";
-import { SoloCardPage } from "../../../pages/SoloCardPage/index.ts";
+
+const Main = lazy(() => import("../../../widgest/Main/index.ts"));
+
+const FavoritesPage = lazy(
+  () => import("../../../pages/FavoritesPage/index.ts"),
+);
+const HistoryPage = lazy(() => import("../../../pages/HistoryPage/index.ts"));
+const SearchPage = lazy(() => import("../../../pages/SearchPage/index.ts"));
+
+const LoginPage = lazy(() => import("../../../pages/LoginPage/index.ts"));
+
+const SignupPage = lazy(() => import("../../../pages/SignupPage/index.ts"));
+
+const ErrorPage = lazy(() => import("../../../pages/ErrorPage/index.ts"));
+
+const SoloCardPage = lazy(() => import("../../../pages/SoloCardPage/index.ts"));
 
 export const router = createBrowserRouter([
   {

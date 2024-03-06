@@ -1,2 +1,3 @@
 import { SignupPage } from "./ui/SignupPage";
-export { SignupPage };
+
+export default SignupPage;

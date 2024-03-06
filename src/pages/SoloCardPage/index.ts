@@ -1,3 +1,3 @@
 import { SoloCardPage } from "./ui/SoloCardPage";
 
-export { SoloCardPage };
+export default SoloCardPage;
