@@ -32,7 +32,7 @@ export function Favorites() {
   ) : (
     <div className={styles.films}>
       {user.favorites?.length ? (
-        user.favorites?.map((movieId) => {
+        user.favorites?.map((movieId: number) => {
           return (
             <div key={movieId}>
               <FavoritesCard id={movieId} />
