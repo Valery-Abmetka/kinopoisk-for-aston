@@ -1,4 +1,4 @@
-import { addToFavorites, deleteFromFavorites } from "./actions/HistoryActions";
-import favoriteReducer from "./slice/FavoriteSlice";
+import { deleteFromHistory, addToHistory } from "./actions/HistoryActions";
+import historyReducer from "./slice/HistorySlice";
 
-export { deleteFromFavorites, addToFavorites, favoriteReducer };
+export { deleteFromHistory, addToHistory, historyReducer };

@@ -4,17 +4,15 @@ import { addToHistory, deleteFromHistory } from "../actions/HistoryActions";
 interface UserState {
   isLoading: boolean;
   error: string | undefined;
-  history: string[];
 }
 
 const initialState: UserState = {
-  history: [],
   isLoading: false,
   error: undefined,
 };
 
-const favoriteSlice = createSlice({
-  name: "favorite",
+const historySlice = createSlice({
+  name: "history",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -22,9 +20,8 @@ const favoriteSlice = createSlice({
       .addCase(addToHistory.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(addToHistory.fulfilled, (state, action) => {
+      .addCase(addToHistory.fulfilled, (state) => {
         state.isLoading = false;
-        state.history.push(action.payload);
       })
       .addCase(addToHistory.rejected, (state, action) => {
         state.isLoading = false;
@@ -43,4 +40,4 @@ const favoriteSlice = createSlice({
   },
 });
 
-export default favoriteSlice.reducer;
+export default historySlice.reducer;
