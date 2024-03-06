@@ -1,4 +1,5 @@
 import { ButtonAddFavorites, useFavorites } from "../../../shared";
+import PropTypes from "prop-types";
 import styles from "./Card.module.css";
 
 export interface Props {
@@ -17,7 +18,7 @@ export interface Genre {
   genre: string;
 }
 
-export function Card({
+export default function Card({
   nameRu,
   ratingKinopoisk,
   posterUrlPreview,
@@ -48,9 +49,20 @@ export function Card({
             genres.map((el, index) => {
               return <span key={index}>{el.genre}; </span>;
             })}
-          {/* знаю что индексы массивов нельзя использовать но они же не будут меняться поэтому решил что можно */}
         </div>
       </div>
     </div>
   );
 }
+
+Card.propTypes = {
+  kinopoiskId: PropTypes.number.isRequired,
+  nameRu: PropTypes.string.isRequired,
+  genres: PropTypes.array.isRequired,
+  ratingKinopoisk: PropTypes.number.isRequired,
+  year: PropTypes.string.isRequired,
+  posterUrlPreview: PropTypes.string.isRequired,
+  nameOriginal: PropTypes.string,
+  nameEn: PropTypes.string,
+  ratingImbd: PropTypes.string,
+};

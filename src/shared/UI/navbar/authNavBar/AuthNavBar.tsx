@@ -1,4 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
 import styles from "./AuthNavBar.module.css";
 import cn from "classnames";
 
@@ -34,3 +35,7 @@ export function AuthNavBar({ handleLogout }: Props) {
     </div>
   );
 }
+
+AuthNavBar.propTypes = {
+  handleLogout: PropTypes.func.isRequired,
+};
