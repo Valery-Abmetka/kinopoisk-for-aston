@@ -4,7 +4,7 @@ import { db } from "../../../../firebase";
 
 interface UserHistory {
   email: string;
-  keyword: string;
+  keyword: string | undefined;
 }
 
 export const addToHistory = createAsyncThunk(
