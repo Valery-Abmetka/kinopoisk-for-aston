@@ -1,12 +1,9 @@
 import styles from "./Favorites.module.css";
 
 import { Props as Item } from "../../../entities/";
-import { useDispatch, useSelector } from "react-redux";
-import { getDbProfile, getUser } from "../../../shared/reducers/Firestor";
 import { FavoritesCard } from "../../../features/favorites/favoritesCard";
-import { useEffect } from "react";
-import { getEmail } from "../../../shared/reducers/Authorization";
-import { AppDispatch } from "../../../app/providers/store/store";
+import { useSelector } from "react-redux";
+import { getUser, isBdLoading } from "../../../shared/reducers/Firestor";
 
 export interface Data {
   total: number;
@@ -15,19 +12,19 @@ export interface Data {
 }
 
 export function Favorites() {
-  const dispatch = useDispatch<AppDispatch>();
   const user = useSelector(getUser);
-  const email = useSelector(getEmail);
-
-  useEffect(() => {
-    dispatch(getDbProfile(email as string));
-  }, [dispatch, email]);
-
-  return (
+  const isLoading = useSelector(isBdLoading);
+  return isLoading ? (
+    <h1>Загрузка базы данных</h1>
+  ) : (
     <div className={styles.films}>
-      {user.favorites.length ? (
-        user.favorites.map((movieId) => {
-          return <FavoritesCard key={movieId} id={movieId} />;
+      {user.favorites?.length ? (
+        user.favorites?.map((movieId) => {
+          return (
+            <div key={movieId}>
+              <FavoritesCard id={movieId} />
+            </div>
+          );
         })
       ) : (
         <h1>Нет избранных</h1>

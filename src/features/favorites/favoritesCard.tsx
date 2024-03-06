@@ -24,8 +24,10 @@ export function FavoritesCard({ id }: Props) {
     return <h1>Ошибка</h1>;
   }
 
-  return (
-    isLoading && (
+  return isLoading ? (
+    <h2>Загрузка карточки</h2>
+  ) : (
+    <div>
       <Link to={`/movies/${movie?.kinopoiskId}`} key={movie?.kinopoiskId}>
         <Card
           kinopoiskId={movie?.kinopoiskId}
@@ -36,6 +38,6 @@ export function FavoritesCard({ id }: Props) {
           year={movie?.year}
         />
       </Link>
-    )
+    </div>
   );
 }
