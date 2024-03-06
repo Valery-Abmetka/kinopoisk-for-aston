@@ -5,14 +5,12 @@ interface searchState {
   movies: Item[];
   isLoading: boolean;
   isError: boolean;
-  keywords: string[];
 }
 
 const initialState: searchState = {
   movies: [],
   isLoading: false,
   isError: false,
-  keywords: [],
 };
 
 const searchSlice = createSlice({
@@ -23,7 +21,6 @@ const searchSlice = createSlice({
       state.movies = action.payload.movies;
       state.isError = action.payload.isError;
       state.isLoading = action.payload.isLoading;
-      state.keywords.push(action.payload.keywords);
     },
   },
 });

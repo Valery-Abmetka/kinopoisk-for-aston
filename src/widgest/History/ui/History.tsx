@@ -1,20 +1,11 @@
-import styles from "./Favorites.module.css";
-
-import { Props as Item } from "../../../entities/";
 import { useDispatch, useSelector } from "react-redux";
 import { getDbProfile, getUser } from "../../../shared/reducers/Firestor";
-import { FavoritesCard } from "../../../features/favorites/favoritesCard";
+import styles from "./History.module.css";
 import { useEffect } from "react";
 import { getEmail } from "../../../shared/reducers/Authorization";
 import { AppDispatch } from "../../../app/providers/store/store";
 
-export interface Data {
-  total: number;
-  totalPages: number;
-  items: Item[];
-}
-
-export function Favorites() {
+export function History() {
   const dispatch = useDispatch<AppDispatch>();
   const user = useSelector(getUser);
   const email = useSelector(getEmail);
@@ -25,12 +16,12 @@ export function Favorites() {
 
   return (
     <div className={styles.films}>
-      {user.favorites.length ? (
-        user.favorites.map((movieId) => {
-          return <FavoritesCard key={movieId} id={movieId} />;
+      {user.history.length ? (
+        user.history.map((keyword) => {
+          return <div key={keyword}>{keyword}</div>;
         })
       ) : (
-        <h1>Нет избранных</h1>
+        <h1>История пуста</h1>
       )}
     </div>
   );

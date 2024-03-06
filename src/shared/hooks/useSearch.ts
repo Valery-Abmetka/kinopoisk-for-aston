@@ -11,7 +11,7 @@ export function useSearch() {
       movies: data?.films as Item[],
       isError: isError,
       isLoading: isLoading,
-      keywords: data?.keywords,
+      keyword: data?.keywords,
     }),
   });
 

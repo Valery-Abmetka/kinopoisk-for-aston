@@ -26,14 +26,14 @@ export function FavoritesCard({ id }: Props) {
 
   return (
     isLoading && (
-      <Link to={`/movies/${movie.kinopoiskId}`} key={movie.kinopoiskId}>
+      <Link to={`/movies/${movie?.kinopoiskId}`} key={movie?.kinopoiskId}>
         <Card
-          kinopoiskId={movie.kinopoiskId}
-          nameRu={movie.nameRu}
-          ratingKinopoisk={movie.ratingKinopoisk}
-          posterUrlPreview={movie.posterUrlPreview}
-          genres={movie.genres}
-          year={movie.year}
+          kinopoiskId={movie?.kinopoiskId}
+          nameRu={movie?.nameRu}
+          ratingKinopoisk={movie?.ratingKinopoisk}
+          posterUrlPreview={movie?.posterUrlPreview}
+          genres={movie?.genres}
+          year={movie?.year}
         />
       </Link>
     )
