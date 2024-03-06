@@ -2,8 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { lazy } from "react";
 import App from "../../App.tsx";
 
-const Main = lazy(() => import("../../../widgest/Main/index.ts"));
-
+const MainPage = lazy(() => import("../../../pages/MainPage/index.ts"));
 const FavoritesPage = lazy(
   () => import("../../../pages/FavoritesPage/index.ts"),
 );
@@ -25,7 +24,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <Main />,
+        element: <MainPage />,
       },
       {
         path: "/movies/:id",

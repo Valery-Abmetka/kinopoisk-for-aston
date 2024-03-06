@@ -11,7 +11,7 @@ function App() {
   const isLoadingCheckAuth = useSelector(getIsLoadingAuth);
 
   return isLoadingCheckAuth ? (
-    <h1>Загрузка</h1>
+    <h1>Проверка авторизации</h1>
   ) : (
     <ErrorBoundary
       fallback={<div>Мы уже знаем о проблеме и стараемся ее решить</div>}
