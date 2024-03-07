@@ -17,7 +17,6 @@ export interface Data {
 export function Favorites() {
   const user = useSelector(getUser);
   const isLoading = useSelector(isBdLoading);
-
   const isAuth = useSelector(getIsAuthenticated);
   const navigate = useNavigate();
 

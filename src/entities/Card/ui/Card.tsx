@@ -56,12 +56,12 @@ export default function Card({
 }
 
 Card.propTypes = {
-  kinopoiskId: PropTypes.number.isRequired,
-  nameRu: PropTypes.string.isRequired,
-  genres: PropTypes.array.isRequired,
+  kinopoiskId: PropTypes.number,
+  nameRu: PropTypes.string,
+  genres: PropTypes.array,
   ratingKinopoisk: PropTypes.number,
   year: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  posterUrlPreview: PropTypes.string.isRequired,
+  posterUrlPreview: PropTypes.string,
   nameOriginal: PropTypes.string,
   nameEn: PropTypes.string,
   ratingImbd: PropTypes.string,

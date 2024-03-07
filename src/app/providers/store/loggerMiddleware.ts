@@ -71,7 +71,7 @@ startTypedListening({
 });
 
 startTypedListening({
-  type: "auth/checkAuth/fulfilled",
+  type: "auth/setAuthorized",
   effect: (_, { getState }) => {
     const email = getState().auth.email;
     const isAuthenticated = getState().auth.isAuthenticated;
