@@ -7,10 +7,6 @@
   background: rgb(155 155 155);
   color: black;
 }
-::placeholder {
-  color: black;
-  opacity: 1;
-}
 
 .form {
   display: flex;

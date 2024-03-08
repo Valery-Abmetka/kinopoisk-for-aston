@@ -28,13 +28,14 @@ export function SearchBar({
           type="text"
           placeholder="search movies..."
           value={query}
+          onFocus={() => setIsVisibleSuggest(true)}
           onChange={(e) => {
-            setIsVisibleSuggest(true);
             setQuery(e.target.value);
           }}
+          onBlur={() => setTimeout(() => setIsVisibleSuggest(false), 100)}
         />
 
-        {query && (
+        {isVisibleSuggest && (
           <Suggest isVisible={isVisibleSuggest} resultSearch={resultSearch} />
         )}
       </div>

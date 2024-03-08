@@ -17,7 +17,6 @@ export interface Data {
 export function Favorites() {
   const user = useSelector(getUser);
   const isLoading = useSelector(isBdLoading);
-
   const isAuth = useSelector(getIsAuthenticated);
   const navigate = useNavigate();
 
@@ -32,7 +31,7 @@ export function Favorites() {
   ) : (
     <div className={styles.films}>
       {user.favorites?.length ? (
-        user.favorites?.map((movieId) => {
+        user.favorites?.map((movieId: number) => {
           return (
             <div key={movieId}>
               <FavoritesCard id={movieId} />

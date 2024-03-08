@@ -5,6 +5,7 @@ import { favoriteReducer } from "../../../shared/reducers/Favorites";
 import { firestoreReducer } from "../../../shared/reducers/Firestor";
 import { searchReducer } from "../../../shared/reducers/Search";
 import { historyReducer } from "../../../shared/reducers/History/";
+import { AuthLogsMiddleware } from "../store/loggerMiddleware.ts";
 
 export const store = configureStore({
   reducer: {
@@ -25,7 +26,9 @@ export const store = configureStore({
           "auth/login/fulfilled",
         ],
       },
-    }).concat(kinopoiskApi.middleware),
+    })
+      .concat(kinopoiskApi.middleware)
+      .concat(AuthLogsMiddleware.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
