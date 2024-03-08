@@ -4,7 +4,7 @@ import { db } from "../../../../firebase";
 
 interface UserHistory {
   email: string;
-  keyword: string | undefined;
+  keyword: string;
 }
 
 export const addToHistory = createAsyncThunk(
@@ -30,6 +30,8 @@ export const deleteFromHistory = createAsyncThunk(
       await updateDoc(userRef, {
         history: arrayRemove(keyword),
       });
+
+      return keyword;
     } catch (err) {
       return rejectWithValue(err);
     }

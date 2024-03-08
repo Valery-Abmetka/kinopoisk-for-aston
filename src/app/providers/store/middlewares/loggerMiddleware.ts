@@ -4,7 +4,7 @@ import {
   TypedStartListening,
 } from "@reduxjs/toolkit";
 
-import { RootState, store } from "./store";
+import { RootState, store } from "../store";
 
 type Dispatch = typeof store.dispatch;
 type AppStartListening = TypedStartListening<RootState, Dispatch>;

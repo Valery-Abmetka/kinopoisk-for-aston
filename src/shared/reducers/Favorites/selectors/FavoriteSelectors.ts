@@ -1,3 +1,5 @@
 import { RootState } from "../../../../app/providers/store/store";
 
-export const favoriteSelector = (state: RootState) => state.favorite;
+export const getFavorites = (state: RootState) => state.favorite.favorites;
+export const isFirstLoadingFavorites = (state: RootState) =>
+  state.favorite.isFirstLoading;
