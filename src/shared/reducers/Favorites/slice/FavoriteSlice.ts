@@ -6,14 +6,12 @@ import {
 
 interface UserState {
   favorites: number[];
-  isLoading: boolean;
   error: string | undefined;
   isFirstLoading: boolean;
 }
 
 const initialState: UserState = {
   favorites: [],
-  isLoading: false,
   error: undefined,
   isFirstLoading: true,
 };
@@ -24,7 +22,6 @@ const favoriteSlice = createSlice({
   reducers: {
     updateFavorites(state, action) {
       state.favorites = action.payload;
-      state.isLoading = false;
     },
     setFavoritesFirstLoading(state, action) {
       state.isFirstLoading = action.payload;
@@ -32,26 +29,16 @@ const favoriteSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(addToFavorites.pending, (state) => {
-        state.isLoading = true;
-      })
       .addCase(addToFavorites.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.favorites.push(action.payload);
       })
       .addCase(addToFavorites.rejected, (state, action) => {
-        state.isLoading = false;
         state.error = action.error.message;
       })
-      .addCase(deleteFromFavorites.pending, (state) => {
-        state.isLoading = true;
-      })
       .addCase(deleteFromFavorites.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.favorites.filter((el) => el !== action.payload);
+        state.favorites = state.favorites.filter((el) => el !== action.payload);
       })
       .addCase(deleteFromFavorites.rejected, (state, action) => {
-        state.isLoading = false;
         state.error = action.error.message;
       });
   },
