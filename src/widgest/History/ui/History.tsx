@@ -1,12 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./History.module.css";
-import { useEffect } from "react";
-import {
-  getEmail,
-  getIsAuthenticated,
-} from "../../../shared/reducers/Authorization";
+import { getEmail } from "../../../shared/reducers/Authorization";
 import { AppDispatch } from "../../../app/providers/store/store";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FiTrash2 as DeleteIcon } from "react-icons/fi";
 import {
   getHistory,
@@ -20,19 +16,11 @@ export function History() {
   const history = useSelector(getHistory);
   const error = useSelector(getError);
   const email = useSelector(getEmail) as string;
-  const isAuth = useSelector(getIsAuthenticated);
-  const navigate = useNavigate();
   const isFirstLoading = useSelector(isFirstLoadingHistory);
 
   function deleteFromHistoryHandler(keyword: string) {
     dispatch(deleteFromHistory({ email, keyword }));
   }
-
-  useEffect(() => {
-    if (!isAuth) {
-      navigate("/signin");
-    }
-  }, [isAuth, navigate]);
 
   if (isFirstLoading) {
     return <h1>Загрузка базы данных</h1>;

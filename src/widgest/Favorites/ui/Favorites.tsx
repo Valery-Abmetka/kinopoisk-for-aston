@@ -3,9 +3,6 @@ import styles from "./Favorites.module.css";
 import { Props as Item } from "../../../entities/";
 import { FavoritesCard } from "../../../features/favorites/favoritesCard";
 import { useSelector } from "react-redux";
-import { getIsAuthenticated } from "../../../shared/reducers/Authorization";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import {
   getFavorites,
   isFirstLoadingFavorites,
@@ -20,16 +17,9 @@ export interface Data {
 
 export function Favorites() {
   const favorites = useSelector(getFavorites);
-  const isAuth = useSelector(getIsAuthenticated);
+
   const isFirstLoading = useSelector(isFirstLoadingFavorites);
   const error = useSelector(getErrorFavorites);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!isAuth) {
-      navigate("/signin");
-    }
-  }, [isAuth, navigate]);
 
   if (isFirstLoading) {
     return <h1>Загрузка базы данных</h1>;
