@@ -1,6 +1,19 @@
 import { RootState } from "../../../../app/providers/store/store";
+import { createSelector } from "@reduxjs/toolkit";
 
-export const getHistory = (state: RootState) => state.history.history;
-export const isFirstLoadingHistory = (state: RootState) =>
-  state.history.isFirstLoading;
-export const getError = (state: RootState) => state.history.error;
+const selectHistoryState = (state: RootState) => state.history;
+
+export const selectHistory = createSelector(
+  [selectHistoryState],
+  (historyState) => historyState.history,
+);
+
+export const selectIsFirstLoadingHistory = createSelector(
+  [selectHistoryState],
+  (historyState) => historyState.isFirstLoading,
+);
+
+export const selectIsHistoryError = createSelector(
+  [selectHistoryState],
+  (historyState) => historyState.error,
+);

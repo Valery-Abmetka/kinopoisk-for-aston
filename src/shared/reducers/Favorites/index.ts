@@ -3,17 +3,18 @@ import {
   deleteFromFavorites,
 } from "./actions/FavoritesActions";
 import {
-  isFirstLoadingFavorites,
-  getErrorFavorites,
-  getFavorites,
+  selectIsFirstLoadingFavorites,
+  selectFavorites,
+  selectFavoritesError,
 } from "./selectors/FavoriteSelectors";
+
 import favoriteReducer from "./slice/FavoriteSlice";
 
 export {
   deleteFromFavorites,
   addToFavorites,
-  isFirstLoadingFavorites,
-  getErrorFavorites,
-  getFavorites,
+  selectFavoritesError,
+  selectIsFirstLoadingFavorites,
+  selectFavorites,
   favoriteReducer,
 };

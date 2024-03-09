@@ -33,8 +33,8 @@ export const kinopoiskApi = createApi({
       transformResponse: transformMovieById,
     }),
     getMoviesBySearch: build.query({
-      query: (query) => ({
-        url: `/v2.1/films/search-by-keyword?keyword=${query}&page=1`,
+      query: ({ query, page }) => ({
+        url: `/v2.1/films/search-by-keyword?keyword=${query}&page=${page}`,
       }),
       transformResponse: transformMoviesByQuery,
     }),

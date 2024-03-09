@@ -10,7 +10,7 @@ interface Props {
 }
 
 export function Suggest({ isVisible, query }: Props) {
-  const { status, movies, isError: error } = useSearch(query);
+  const { status, movies, isError: error } = useSearch(query, 1);
 
   if (status === "uninitialized") {
     return <div>Отправка запроса</div>;

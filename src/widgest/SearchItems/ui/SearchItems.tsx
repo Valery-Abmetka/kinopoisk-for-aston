@@ -12,6 +12,7 @@ export function SearchItems() {
   const searchMovies = useSelector(getSearchMovies);
   const status = useSelector(getSearchStatus);
   const error = useSelector(getSearchError);
+
   if (status === "uninitialized") {
     return <div>Отправка запроса</div>;
   }
