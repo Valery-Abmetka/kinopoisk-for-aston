@@ -4,9 +4,9 @@ import { Props as Item } from "../../../entities/";
 import { FavoritesCard } from "../../../features/favorites/favoritesCard";
 import { useSelector } from "react-redux";
 import {
-  getFavorites,
-  isFirstLoadingFavorites,
-  getErrorFavorites,
+  selectFavorites,
+  selectIsFirstLoadingFavorites,
+  selectFavoritesError,
 } from "../../../shared/reducers/Favorites";
 
 export interface Data {
@@ -16,10 +16,10 @@ export interface Data {
 }
 
 export function Favorites() {
-  const favorites = useSelector(getFavorites);
+  const favorites = useSelector(selectFavorites);
 
-  const isFirstLoading = useSelector(isFirstLoadingFavorites);
-  const error = useSelector(getErrorFavorites);
+  const isFirstLoading = useSelector(selectIsFirstLoadingFavorites);
+  const error = useSelector(selectFavoritesError);
 
   if (isFirstLoading) {
     return <h1>Загрузка базы данных</h1>;

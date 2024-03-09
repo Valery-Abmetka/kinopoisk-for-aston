@@ -1,15 +1,16 @@
 import { deleteFromHistory, addToHistory } from "./actions/HistoryActions";
 import {
-  getError,
-  isFirstLoadingHistory,
-  getHistory,
+  selectIsHistoryError,
+  selectHistory,
+  selectIsFirstLoadingHistory,
 } from "./selectors/HistorySelectors";
+
 import historyReducer from "./slice/HistorySlice";
 
 export {
-  getError,
-  isFirstLoadingHistory,
-  getHistory,
+  selectIsHistoryError,
+  selectIsFirstLoadingHistory,
+  selectHistory,
   deleteFromHistory,
   addToHistory,
   historyReducer,

@@ -5,18 +5,18 @@ import { AppDispatch } from "../../../app/providers/store/store";
 import { Link } from "react-router-dom";
 import { FiTrash2 as DeleteIcon } from "react-icons/fi";
 import {
-  getHistory,
-  getError,
-  isFirstLoadingHistory,
   deleteFromHistory,
+  selectHistory,
+  selectIsFirstLoadingHistory,
+  selectIsHistoryError,
 } from "../../../shared/reducers/History";
 
 export function History() {
   const dispatch = useDispatch<AppDispatch>();
-  const history = useSelector(getHistory);
-  const error = useSelector(getError);
+  const history = useSelector(selectHistory);
+  const error = useSelector(selectIsHistoryError);
   const email = useSelector(getEmail) as string;
-  const isFirstLoading = useSelector(isFirstLoadingHistory);
+  const isFirstLoading = useSelector(selectIsFirstLoadingHistory);
 
   function deleteFromHistoryHandler(keyword: string) {
     dispatch(deleteFromHistory({ email, keyword }));
