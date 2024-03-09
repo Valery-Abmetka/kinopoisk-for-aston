@@ -1,6 +1,6 @@
 import styles from "./Favorites.module.css";
 
-import { Props as Item } from "../../../entities/";
+import { Props as Item } from "../../../entities/"; //Для удобства чтения
 import { FavoritesCard } from "../../../features/favorites/favoritesCard";
 import { useSelector } from "react-redux";
 import {

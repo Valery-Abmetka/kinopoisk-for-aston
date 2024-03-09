@@ -8,7 +8,9 @@ import { getEmail } from "../../shared/reducers/Authorization";
 export function Search() {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
-  const email = useSelector(getEmail) as string;
+  const email = useSelector(getEmail) as string; //либо null либо string
+  // если сделать только string то когда приходит ответ с firestora
+  //ругается тк там может быть null и везде пришлось приводить
 
   function onFormSubmit(keyword: string) {
     dispatch(addToHistory({ email, keyword }));

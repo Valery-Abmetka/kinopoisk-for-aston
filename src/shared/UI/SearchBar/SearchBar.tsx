@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import styles from "./SearchBar.module.css";
-import { CiSearch as SearchSvg } from "react-icons/ci";
+import { CiSearch as SearchSvg } from "react-icons/ci"; //Для удобства чтения
 import { Suggest } from "../Suggest/suggest";
 import { useState } from "react";
 

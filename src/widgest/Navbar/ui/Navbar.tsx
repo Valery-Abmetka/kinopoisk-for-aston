@@ -8,7 +8,7 @@ import { useLogout } from "../../../shared/hooks/useLogout";
 import { Search } from "../../../features/Search/Search";
 import { useContext } from "react";
 import { ThemeContext } from "../../../app/providers/context/themeContext";
-import { MdWbSunny as ThemeIcon } from "react-icons/md";
+import { MdWbSunny as ThemeIcon } from "react-icons/md"; //Для удобства чтения
 import cn from "classnames";
 
 export function Navbar() {

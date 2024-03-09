@@ -1,4 +1,4 @@
-import { FaStar as StarIcon } from "react-icons/fa";
+import { FaStar as StarIcon } from "react-icons/fa"; //Для удобства чтения
 import styles from "./ButtonAddFavorites.module.css";
 import { memo } from "react";
 

@@ -9,9 +9,9 @@ export function useSearch(queryParams: string, page: number) {
     {
       selectFromResult: ({ status, data, isError, originalArgs }) => ({
         status: status,
-        movies: data?.films as Item[],
+        movies: data?.films as Item[], //уход от null к обычным значениям
         isError: isError,
-        keyword: data?.keywords as string,
+        keyword: data?.keywords as string, //уход от null к обычным значениям
         page: originalArgs?.page,
       }),
     },

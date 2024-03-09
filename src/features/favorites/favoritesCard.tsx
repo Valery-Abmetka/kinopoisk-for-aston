@@ -14,7 +14,8 @@ interface Props {
 export function FavoritesCard({ id }: Props) {
   const { movie, isError, isLoading } = useGetMoviesByIdQuery(id, {
     selectFromResult: ({ data, isError, isLoading }) => ({
-      movie: data as Movie,
+      movie: data as Movie, //понимаю что както типизировать можно но
+      // без явного приведения не получается
       isError: isError,
       isLoading: isLoading,
     }),

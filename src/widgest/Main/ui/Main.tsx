@@ -7,7 +7,8 @@ import { useGetInitialMoviesQuery } from "../../../shared";
 export function Main() {
   const { movies, isError, isLoading } = useGetInitialMoviesQuery(null, {
     selectFromResult: ({ data, isError, isLoading }) => ({
-      movies: data as Item[],
+      movies: data as Item[], // приведение к типам вроде настроил типизацию ответа
+      // но без этого не получилось
       isError: isError,
       isLoading: isLoading,
     }),

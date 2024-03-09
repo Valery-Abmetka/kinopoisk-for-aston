@@ -26,6 +26,8 @@ export function Signup() {
   const submitHandler: SubmitHandler<MyForm> = async (user) => {
     try {
       const response = (await dispatch(signup(user))) as Response;
+      // чтобы результат сразу был типизирован не
+      //смог это обойти по другому но понимаю что как то можно
       if (response.type == "auth/signup/fulfilled") {
         const transformData = {
           email: response.payload.email as string,

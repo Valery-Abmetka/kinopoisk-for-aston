@@ -13,7 +13,8 @@ export function SoloCard() {
 
   const { movie, isError, isLoading } = useGetMoviesByIdQuery(id, {
     selectFromResult: ({ data, isError, isLoading }) => ({
-      movie: data as Movie,
+      movie: data as Movie, // приведение к типам вроде настроил типизацию ответа
+      // но без этого не получилось
       isError: isError,
       isLoading: isLoading,
     }),

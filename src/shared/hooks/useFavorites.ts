@@ -13,7 +13,9 @@ export function useFavorites(movieId: number) {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const isAuth = useSelector(getIsAuthenticated);
-  const email = useSelector(getEmail) as string;
+  const email = useSelector(getEmail) as string; //либо null либо string
+  // если сделать только string то когда приходит ответ с firestora
+  //ругается тк там может быть null и везде пришлось приводить
   const favorites = useSelector(selectFavorites);
   let isFavorite: boolean = false;
   isFavorite = favorites.includes(movieId);

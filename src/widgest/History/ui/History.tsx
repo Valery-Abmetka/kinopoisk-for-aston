@@ -3,7 +3,7 @@ import styles from "./History.module.css";
 import { getEmail } from "../../../shared/reducers/Authorization";
 import { AppDispatch } from "../../../app/providers/store/store";
 import { Link } from "react-router-dom";
-import { FiTrash2 as DeleteIcon } from "react-icons/fi";
+import { FiTrash2 as DeleteIcon } from "react-icons/fi"; //Для удобства чтения
 import {
   deleteFromHistory,
   selectHistory,
@@ -16,6 +16,9 @@ export function History() {
   const history = useSelector(selectHistory);
   const error = useSelector(selectIsHistoryError);
   const email = useSelector(getEmail) as string;
+  //либо null либо string
+  // если сделать только string то когда приходит ответ с firestora
+  //ругается тк там может быть null и везде пришлось приводить
   const isFirstLoading = useSelector(selectIsFirstLoadingHistory);
 
   function deleteFromHistoryHandler(keyword: string) {
