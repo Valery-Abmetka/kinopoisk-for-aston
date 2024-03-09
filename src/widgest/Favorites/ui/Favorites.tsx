@@ -3,10 +3,14 @@ import styles from "./Favorites.module.css";
 import { Props as Item } from "../../../entities/";
 import { FavoritesCard } from "../../../features/favorites/favoritesCard";
 import { useSelector } from "react-redux";
-import { getUser, isBdLoading } from "../../../shared/reducers/Firestor";
 import { getIsAuthenticated } from "../../../shared/reducers/Authorization";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import {
+  getErrorFavorites,
+  getFavorites,
+  isFirstLoadingFavorites,
+} from "../../../shared/reducers/Favorites/selectors/FavoriteSelectors";
 
 export interface Data {
   total: number;
@@ -15,9 +19,10 @@ export interface Data {
 }
 
 export function Favorites() {
-  const user = useSelector(getUser);
-  const isLoading = useSelector(isBdLoading);
+  const favorites = useSelector(getFavorites);
   const isAuth = useSelector(getIsAuthenticated);
+  const isFirstLoading = useSelector(isFirstLoadingFavorites);
+  const error = useSelector(getErrorFavorites);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,12 +31,18 @@ export function Favorites() {
     }
   }, [isAuth, navigate]);
 
-  return isLoading ? (
-    <h1>Загрузка базы данных</h1>
-  ) : (
+  if (isFirstLoading) {
+    return <h1>Загрузка базы данных</h1>;
+  }
+
+  if (error) {
+    return <h1>Произошла ошибка {error}</h1>;
+  }
+
+  return (
     <div className={styles.films}>
-      {user.favorites?.length ? (
-        user.favorites?.map((movieId: number) => {
+      {favorites?.length ? (
+        favorites?.map((movieId: number) => {
           return (
             <div key={movieId}>
               <FavoritesCard id={movieId} />

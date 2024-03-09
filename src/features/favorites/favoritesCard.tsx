@@ -24,20 +24,22 @@ export function FavoritesCard({ id }: Props) {
     return <h1>Ошибка</h1>;
   }
 
-  return isLoading ? (
-    <h2>Загрузка карточки</h2>
-  ) : (
+  return (
     <div>
-      <Link to={`/movies/${movie?.kinopoiskId}`} key={movie?.kinopoiskId}>
-        <Card
-          kinopoiskId={movie?.kinopoiskId}
-          nameRu={movie?.nameRu}
-          ratingKinopoisk={movie?.ratingKinopoisk}
-          posterUrlPreview={movie?.posterUrlPreview}
-          genres={movie?.genres}
-          year={movie?.year}
-        />
-      </Link>
+      {isLoading ? (
+        <h2>Загрузка карточки</h2>
+      ) : (
+        <Link to={`/movies/${movie?.kinopoiskId}`} key={movie?.kinopoiskId}>
+          <Card
+            kinopoiskId={movie?.kinopoiskId}
+            nameRu={movie?.nameRu}
+            ratingKinopoisk={movie?.ratingKinopoisk}
+            posterUrlPreview={movie?.posterUrlPreview}
+            genres={movie?.genres}
+            year={movie?.year}
+          />
+        </Link>
+      )}
     </div>
   );
 }

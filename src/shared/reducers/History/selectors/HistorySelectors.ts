@@ -1,5 +1,6 @@
 import { RootState } from "../../../../app/providers/store/store";
 
-export const isLoadingSetHistory = (state: RootState) =>
-  state.history.isLoading;
-export const errorSetHistory = (state: RootState) => state.history.error;
+export const getHistory = (state: RootState) => state.history.history;
+export const isFirstLoadingHistory = (state: RootState) =>
+  state.history.isFirstLoading;
+export const getError = (state: RootState) => state.history.error;

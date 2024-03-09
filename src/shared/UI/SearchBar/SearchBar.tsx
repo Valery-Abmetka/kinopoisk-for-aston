@@ -1,24 +1,31 @@
 import { useForm } from "react-hook-form";
 import styles from "./SearchBar.module.css";
 import { CiSearch as SearchSvg } from "react-icons/ci";
-import { Item } from "../../api/kinopoiskApi/transformResponse/transformResponse";
 import { Suggest } from "../Suggest/suggest";
 import { useState } from "react";
 
-export function SearchBar({
-  query,
-  setQuery,
-  resultSearch,
-  onFormSubmit,
-}: Props) {
+import { useSearchParams } from "react-router-dom";
+
+export function SearchBar({ onFormSubmit }: Props) {
   const { handleSubmit } = useForm();
   const [isVisibleSuggest, setIsVisibleSuggest] = useState(false);
+  const [prevQery, setPrevQuery] = useState("");
+
+  const [searchParams] = useSearchParams();
+  const queryParams = searchParams.get("q") || "";
+
+  const [query, setQuery] = useState(queryParams);
+
+  if (queryParams && prevQery !== queryParams) {
+    setQuery(queryParams);
+    setPrevQuery(queryParams);
+  }
 
   return (
     <form
       onSubmit={handleSubmit(() => {
         setIsVisibleSuggest(false);
-        onFormSubmit(resultSearch);
+        onFormSubmit(query);
       })}
       className={styles.form}
     >
@@ -36,7 +43,7 @@ export function SearchBar({
         />
 
         {isVisibleSuggest && (
-          <Suggest isVisible={isVisibleSuggest} resultSearch={resultSearch} />
+          <Suggest query={query} isVisible={isVisibleSuggest} />
         )}
       </div>
       <button className={styles.button} type="submit">
@@ -47,14 +54,5 @@ export function SearchBar({
 }
 
 interface Props {
-  query: string;
-  setQuery: React.Dispatch<React.SetStateAction<string>>;
-  resultSearch: ResultSearch;
-  onFormSubmit: (data: ResultSearch) => void;
-}
-export interface ResultSearch {
-  movies: Item[];
-  isError: boolean;
-  isLoading: boolean;
-  keyword: string | undefined;
+  onFormSubmit: (keyword: string) => void;
 }

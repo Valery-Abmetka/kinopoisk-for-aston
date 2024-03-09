@@ -8,7 +8,7 @@ interface User {
 }
 
 export const setDbProfile = createAsyncThunk(
-  "user/setDbProfile",
+  "firestor/setDbProfile",
   async (user: User, { rejectWithValue }) => {
     try {
       await setDoc(doc(db, "users", user.email), {
@@ -25,7 +25,7 @@ export const setDbProfile = createAsyncThunk(
 );
 
 export const getDbProfile = createAsyncThunk(
-  "user/getDbProfile",
+  "firestor/getDbProfile",
   async (email: string, { rejectWithValue }) => {
     try {
       const userRef = doc(db, "users", email);

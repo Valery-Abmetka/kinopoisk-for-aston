@@ -5,7 +5,8 @@ import { favoriteReducer } from "../../../shared/reducers/Favorites";
 import { firestoreReducer } from "../../../shared/reducers/Firestor";
 import { searchReducer } from "../../../shared/reducers/Search";
 import { historyReducer } from "../../../shared/reducers/History/";
-import { AuthLogsMiddleware } from "../store/loggerMiddleware.ts";
+import { AuthLogsMiddleware } from "./middlewares/loggerMiddleware";
+import { firestoreMiddleware } from "./middlewares/firestoreMiddlware";
 
 export const store = configureStore({
   reducer: {
@@ -24,11 +25,13 @@ export const store = configureStore({
           "auth/signup/rejected",
           "auth/login/rejected",
           "auth/login/fulfilled",
+          "search/setResultSearch",
         ],
       },
     })
       .concat(kinopoiskApi.middleware)
-      .concat(AuthLogsMiddleware.middleware),
+      .concat(AuthLogsMiddleware.middleware)
+      .concat(firestoreMiddleware.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

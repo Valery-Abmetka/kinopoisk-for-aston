@@ -15,6 +15,8 @@ export const addToFavorites = createAsyncThunk(
       await updateDoc(userRef, {
         favorites: arrayUnion(movieId),
       });
+
+      return movieId;
     } catch (err) {
       return rejectWithValue(err);
     }
@@ -29,6 +31,8 @@ export const deleteFromFavorites = createAsyncThunk(
       await updateDoc(userRef, {
         favorites: arrayRemove(movieId),
       });
+
+      return movieId;
     } catch (err) {
       return rejectWithValue(err);
     }
