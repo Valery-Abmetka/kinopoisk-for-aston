@@ -2,11 +2,11 @@ import { Link } from "react-router-dom";
 import { Card } from "../../../entities";
 import { useSelector } from "react-redux";
 import styles from "./SearchItems.module.css";
-import { getSearchMovies } from "../../../shared/reducers/Search";
 import {
-  getSearchError,
+  getSearchMovies,
   getSearchStatus,
-} from "../../../shared/reducers/Search/SearchSelectors/SearchSelector";
+  getSearchError,
+} from "../../../shared/reducers/Search";
 
 export function SearchItems() {
   const searchMovies = useSelector(getSearchMovies);

@@ -42,7 +42,7 @@ export function SearchBar({ onFormSubmit }: Props) {
           onBlur={() => setTimeout(() => setIsVisibleSuggest(false), 100)}
         />
 
-        {isVisibleSuggest && (
+        {isVisibleSuggest && query && (
           <Suggest query={query} isVisible={isVisibleSuggest} />
         )}
       </div>

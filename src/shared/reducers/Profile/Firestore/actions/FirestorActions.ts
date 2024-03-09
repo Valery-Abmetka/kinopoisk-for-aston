@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { DocumentData, doc, getDoc, setDoc } from "firebase/firestore";
-import { db } from "../../../../firebase";
+import { db } from "../../../../../firebase";
 
 interface User {
   email: string;
@@ -29,9 +29,9 @@ export const getDbProfile = createAsyncThunk(
   async (email: string, { rejectWithValue }) => {
     try {
       const userRef = doc(db, "users", email);
-      const docSnap = await getDoc(userRef);
+      const docSnap: DocumentData = await getDoc(userRef);
 
-      return docSnap.data() as DocumentData;
+      return docSnap.data();
     } catch (error) {
       return rejectWithValue(error);
     }

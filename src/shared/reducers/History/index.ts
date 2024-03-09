@@ -1,4 +1,16 @@
 import { deleteFromHistory, addToHistory } from "./actions/HistoryActions";
+import {
+  getError,
+  isFirstLoadingHistory,
+  getHistory,
+} from "./selectors/HistorySelectors";
 import historyReducer from "./slice/HistorySlice";
 
-export { deleteFromHistory, addToHistory, historyReducer };
+export {
+  getError,
+  isFirstLoadingHistory,
+  getHistory,
+  deleteFromHistory,
+  addToHistory,
+  historyReducer,
+};
