@@ -7,10 +7,10 @@ import { getIsAuthenticated } from "../../../shared/reducers/Authorization";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import {
-  getErrorFavorites,
   getFavorites,
   isFirstLoadingFavorites,
-} from "../../../shared/reducers/Favorites/selectors/FavoriteSelectors";
+  getErrorFavorites,
+} from "../../../shared/reducers/Favorites";
 
 export interface Data {
   total: number;

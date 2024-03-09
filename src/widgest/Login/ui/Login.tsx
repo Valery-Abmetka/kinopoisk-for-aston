@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-import { MyForm } from "../../../shared/UI/Form/Form";
 import { UserInfo } from "firebase/auth";
 import { getErrorAuth, login } from "../../../shared/reducers/Authorization";
 import { getProfile } from "../../../shared/reducers/Profile";
+import { MyForm } from "../../../shared/UI/Form/Form";
 
 export interface Response {
   payload: UserInfo;

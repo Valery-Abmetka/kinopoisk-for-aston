@@ -7,13 +7,13 @@ import {
 } from "../../../shared/reducers/Authorization";
 import { AppDispatch } from "../../../app/providers/store/store";
 import { Link, useNavigate } from "react-router-dom";
-import { deleteFromHistory } from "../../../shared/reducers/History/actions/HistoryActions";
 import { FiTrash2 as DeleteIcon } from "react-icons/fi";
 import {
-  getError,
   getHistory,
+  getError,
   isFirstLoadingHistory,
-} from "../../../shared/reducers/History/selectors/HistorySelectors";
+  deleteFromHistory,
+} from "../../../shared/reducers/History";
 
 export function History() {
   const dispatch = useDispatch<AppDispatch>();
