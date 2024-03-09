@@ -17,10 +17,13 @@ const searchSlice = createSlice({
   name: "search",
   initialState,
   reducers: {
-    setResultSearch: (state, action) => {
-      state.movies = action.payload.movies;
-      state.isError = action.payload.isError;
-      state.status = action.payload.status;
+    setResultSearch: (state, { payload }) => {
+      payload.page !== 1
+        ? (state.movies = state.movies.concat(payload.movies.slice(2)))
+        : //апишка возвращает первые два одинаковых елемента поэтому slice
+          (state.movies = payload.movies);
+      state.isError = payload.isError;
+      state.status = payload.status;
     },
   },
 });
