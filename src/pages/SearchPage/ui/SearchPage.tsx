@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 export function SearchPage() {
   const dispatch = useDispatch<AppDispatch>();
   const [searchParams] = useSearchParams();
+
   const queryParams = searchParams.get("q") || "";
   const resultSearch = useSearch(queryParams);
 

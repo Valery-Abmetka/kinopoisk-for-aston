@@ -3,14 +3,23 @@ import styles from "./SearchBar.module.css";
 import { CiSearch as SearchSvg } from "react-icons/ci";
 import { Suggest } from "../Suggest/suggest";
 import { useState } from "react";
-import { getSearchKeyword } from "../../reducers/Search/SearchSelectors/SearchSelector";
-import { useSelector } from "react-redux";
+
+import { useSearchParams } from "react-router-dom";
 
 export function SearchBar({ onFormSubmit }: Props) {
   const { handleSubmit } = useForm();
   const [isVisibleSuggest, setIsVisibleSuggest] = useState(false);
-  const keyword = useSelector(getSearchKeyword);
-  const [query, setQuery] = useState(keyword || "");
+  const [prevQery, setPrevQuery] = useState("");
+
+  const [searchParams] = useSearchParams();
+  const queryParams = searchParams.get("q") || "";
+
+  const [query, setQuery] = useState(queryParams);
+
+  if (queryParams && prevQery !== queryParams) {
+    setQuery(queryParams);
+    setPrevQuery(queryParams);
+  }
 
   return (
     <form
