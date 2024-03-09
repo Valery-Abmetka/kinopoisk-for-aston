@@ -28,7 +28,22 @@ export interface RespSearch {
   films: Item[];
 }
 
-export const transformInitialMovies = (data: RespInitial) => {
+interface ReturnValue {
+  kinopoiskId: number | undefined;
+  nameRu: string | null;
+  genres: Genre[] | null;
+  posterUrlPreview: string | null;
+  ratingKinopoisk: number | null;
+  year: string | null;
+  description?: string | null;
+  webUrl?: string | null;
+}
+interface queryReturnValue {
+  films: ReturnValue[];
+  keywords: string;
+}
+
+export const transformInitialMovies = (data: RespInitial): ReturnValue[] => {
   return data?.items.map((movie: Item) => ({
     kinopoiskId: movie.kinopoiskId,
     nameRu: movie.nameRu || movie.nameOriginal || movie.nameEn,
@@ -39,7 +54,7 @@ export const transformInitialMovies = (data: RespInitial) => {
   }));
 };
 
-export const transformMovieById = (movie: Item) => {
+export const transformMovieById = (movie: Item): ReturnValue => {
   return {
     kinopoiskId: movie.kinopoiskId,
     nameRu: movie.nameRu || movie.nameOriginal || movie.nameEn,
@@ -52,7 +67,7 @@ export const transformMovieById = (movie: Item) => {
   };
 };
 
-export const transformMoviesByQuery = (res: RespSearch) => {
+export const transformMoviesByQuery = (res: RespSearch): queryReturnValue => {
   return {
     films: res?.films?.map((movie: Item) => {
       return {
