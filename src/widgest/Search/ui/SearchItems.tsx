@@ -2,27 +2,29 @@ import { Link } from "react-router-dom";
 import { Card } from "../../../entities";
 import { useSelector } from "react-redux";
 import styles from "./SearchItems.module.css";
+import { getSearchMovies } from "../../../shared/reducers/Search";
 import {
-  getSearchMovies,
-  getSearchIsError,
-  getSearchIsLoading,
-} from "../../../shared/reducers/Search";
+  getSearchError,
+  getSearchStatus,
+} from "../../../shared/reducers/Search/SearchSelectors/SearchSelector";
 
 export function SearchItems() {
   const searchMovies = useSelector(getSearchMovies);
-  const isErrorSearchMovies = useSelector(getSearchIsError);
-  const isLoadingSearchMovies = useSelector(getSearchIsLoading);
-
-  if (!searchMovies?.length) {
-    return <h1>ничего не найдено</h1>;
+  const status = useSelector(getSearchStatus);
+  const error = useSelector(getSearchError);
+  if (status === "uninitialized") {
+    return <div>Отправка запроса</div>;
   }
+  if (status === "pending") {
+    return <div>Получение ответа. Загрузка...</div>;
+  }
+  if (status === "rejected") {
+    return <div>Произошла ошибка {error} </div>;
+  }
+
   return (
     <div className={styles.films}>
-      {isErrorSearchMovies ? (
-        <h1>Loading..</h1>
-      ) : isLoadingSearchMovies ? (
-        <h1>Ошибка получения данных</h1>
-      ) : (
+      {searchMovies.length > 0 ? (
         searchMovies?.map((movie) => {
           return (
             <Link to={`/movies/${movie.kinopoiskId}`} key={movie.kinopoiskId}>
@@ -37,6 +39,8 @@ export function SearchItems() {
             </Link>
           );
         })
+      ) : (
+        <div>Ничего не найдено</div>
       )}
     </div>
   );

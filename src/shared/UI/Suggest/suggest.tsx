@@ -1,37 +1,46 @@
 import cn from "classnames";
 import { Link } from "react-router-dom";
 import styles from "./suggest.module.css";
-import { ResultSearch } from "../SearchBar/SearchBar";
+
+import { useSearch } from "../../hooks/useSearch";
 
 interface Props {
-  resultSearch: ResultSearch;
   isVisible: boolean;
+  query: string;
 }
 
-export function Suggest({ resultSearch, isVisible }: Props) {
-  if (resultSearch?.isError) {
-    return <h2>Ошибка загрузки саджестов</h2>;
+export function Suggest({ isVisible, query }: Props) {
+  const { status, movies, isError: error } = useSearch(query);
+
+  if (status === "uninitialized") {
+    return <div>Отправка запроса</div>;
   }
 
-  return resultSearch?.isLoading ? (
-    <h2>загрузка</h2>
-  ) : (
+  if (status === "rejected") {
+    return <div>Произошла ошибка {error} </div>;
+  }
+
+  return (
     <div
       className={cn(styles.sagest, {
         [styles.active]: !isVisible,
       })}
     >
-      {resultSearch?.movies?.map((movie) => {
-        return (
-          <Link
-            className={styles.link}
-            to={`/movies/${movie.kinopoiskId}`}
-            key={movie.kinopoiskId}
-          >
-            <div>{movie.nameRu}</div>
-          </Link>
-        );
-      })}
+      {status === "pending" ? (
+        <div>Загрузка саджестов...</div>
+      ) : (
+        movies?.map((movie) => {
+          return (
+            <Link
+              className={styles.link}
+              to={`/movies/${movie.kinopoiskId}`}
+              key={movie.kinopoiskId}
+            >
+              <div>{movie.nameRu}</div>
+            </Link>
+          );
+        })
+      )}
     </div>
   );
 }

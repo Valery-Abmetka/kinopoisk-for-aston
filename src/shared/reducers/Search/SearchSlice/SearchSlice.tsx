@@ -3,14 +3,16 @@ import { Props as Item } from "../../../../entities";
 
 interface searchState {
   movies: Item[];
-  isLoading: boolean;
+  status: "uninitialized" | "pending" | "fulfilled" | "rejected" | undefined;
   isError: boolean;
+  keyword: string | undefined;
 }
 
 const initialState: searchState = {
   movies: [],
-  isLoading: false,
+  status: undefined,
   isError: false,
+  keyword: undefined,
 };
 
 const searchSlice = createSlice({
@@ -20,7 +22,8 @@ const searchSlice = createSlice({
     setResultSearch: (state, action) => {
       state.movies = action.payload.movies;
       state.isError = action.payload.isError;
-      state.isLoading = action.payload.isLoading;
+      state.status = action.payload.status;
+      state.keyword = action.payload.keyword;
     },
   },
 });
