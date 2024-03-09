@@ -7,9 +7,10 @@ import {
 } from "firebase/auth";
 
 import { setAuthorized } from "../";
-import { getDbProfile } from "../../Firestor";
+
 import { auth } from "../../../../firebase";
 import { setLoading } from "../slice/Authslice";
+import { getProfile } from "../../Profile";
 interface User {
   email: string;
   password: string;
@@ -53,7 +54,7 @@ export const checkAuth = createAsyncThunk(
     onAuthStateChanged(auth, async (user) => {
       if (user && user.email) {
         dispatch(setAuthorized(user.email));
-        dispatch(getDbProfile(user.email));
+        dispatch(getProfile(user.email));
       } else {
         dispatch(setLoading());
         return rejectWithValue("Authentication check error");

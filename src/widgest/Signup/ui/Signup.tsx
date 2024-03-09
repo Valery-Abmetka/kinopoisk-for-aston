@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { AppDispatch } from "../../../app/providers/store/store";
 import { UserInfo } from "firebase/auth";
 import { getErrorAuth, signup } from "../../../shared/reducers/Authorization";
-import { setDbProfile } from "../../../shared/reducers/Firestor";
+import { setProfile } from "../../../shared/reducers/Profile";
 
 export interface Response {
   payload: UserInfo;
@@ -32,7 +32,7 @@ export function Signup() {
           id: response.payload.uid,
         };
         navigate("/");
-        await dispatch(setDbProfile(transformData));
+        await dispatch(setProfile(transformData));
       }
     } catch (err) {
       throw new Error("ошибка запроса");

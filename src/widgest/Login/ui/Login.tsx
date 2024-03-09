@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { MyForm } from "../../../shared/UI/Form/Form";
 import { UserInfo } from "firebase/auth";
 import { getErrorAuth, login } from "../../../shared/reducers/Authorization";
-import { getDbProfile } from "../../../shared/reducers/Firestor";
+import { getProfile } from "../../../shared/reducers/Profile";
 
 export interface Response {
   payload: UserInfo;
@@ -30,7 +30,7 @@ export function Login() {
         const transformData = {
           email: response.payload.email as string,
         };
-        await dispatch(getDbProfile(transformData.email));
+        await dispatch(getProfile(transformData.email));
       }
     } catch (err) {
       throw new Error("ошибка запроса");
