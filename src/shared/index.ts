@@ -11,6 +11,8 @@ import {
 import { useAuthCheck } from "./hooks/useCheckAuth";
 import { useDebounce } from "./hooks/useDebounce";
 import { useFavorites } from "./hooks/useFavorites";
+import { useLogin } from "./hooks/useLogin";
+import { useRegistration } from "./hooks/useRegisteration";
 
 export {
   ButtonAddFavorites,
@@ -24,4 +26,6 @@ export {
   useGetInitialMoviesQuery,
   useGetMoviesBySearchQuery,
   useGetMoviesByIdQuery,
+  useRegistration,
+  useLogin,
 };

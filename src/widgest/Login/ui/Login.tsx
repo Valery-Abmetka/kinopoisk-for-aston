@@ -1,13 +1,7 @@
-import { Form } from "../../../shared";
-import { AppDispatch } from "../../../app/providers/store/store";
-import { useDispatch, useSelector } from "react-redux";
-import { SubmitHandler } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-
+import { Form, useLogin } from "../../../shared";
+import { useSelector } from "react-redux";
 import { UserInfo } from "firebase/auth";
-import { getErrorAuth, login } from "../../../shared/reducers/Authorization";
-import { getProfile } from "../../../shared/reducers/Profile";
-import { MyForm } from "../../../shared/UI/Form/Form";
+import { getErrorAuth } from "../../../shared/reducers/Authorization";
 
 export interface Response {
   payload: UserInfo;
@@ -15,30 +9,8 @@ export interface Response {
 }
 
 export function Login() {
-  const dispatch = useDispatch<AppDispatch>();
-
-  const navigate = useNavigate();
   const error = useSelector(getErrorAuth);
-
-  const submitHandler: SubmitHandler<MyForm> = async (user) => {
-    try {
-      const response = (await dispatch(login(user))) as Response; // чтобы результат сразу был типизирован не
-      //смог это обойти по другому но понимаю что как то можно
-
-      if (response.type == "auth/login/fulfilled") {
-        navigate("/");
-        //либо null либо string
-        // если сделать только string то когда приходит ответ с firestora
-        //ругается тк там может быть null и везде пришлось приводить
-        const transformData = {
-          email: response.payload.email as string,
-        };
-        await dispatch(getProfile(transformData.email));
-      }
-    } catch (err) {
-      throw new Error("ошибка запроса");
-    }
-  };
+  const submitHandler = useLogin();
 
   return <Form error={error} page="Login" onSubmit={submitHandler} />;
 }
