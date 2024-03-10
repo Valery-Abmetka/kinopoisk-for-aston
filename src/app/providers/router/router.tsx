@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { lazy } from "react";
 import App from "../../App.tsx";
+import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute.tsx";
 
 const MainPage = lazy(() => import("../../../pages/MainPage/index.ts"));
 const FavoritesPage = lazy(
@@ -30,8 +31,22 @@ export const router = createBrowserRouter([
         path: "/movies/:id",
         element: <SoloCardPage />,
       },
-      { path: "/favorites", element: <FavoritesPage /> },
-      { path: "/history", element: <HistoryPage /> },
+      {
+        path: "/favorites",
+        element: (
+          <ProtectedRoute>
+            <FavoritesPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/history",
+        element: (
+          <ProtectedRoute>
+            <HistoryPage />
+          </ProtectedRoute>
+        ),
+      },
       { path: "/search", element: <SearchPage /> },
       { path: "/signin", element: <LoginPage /> },
       { path: "/signup", element: <SignupPage /> },

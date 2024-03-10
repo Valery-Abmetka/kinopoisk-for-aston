@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom";
 import "./App.css";
 import { Navbar } from "../widgest/Navbar";
+import { ErrorBoundary } from "react-error-boundary";
 import { useSelector } from "react-redux";
 import { useAuthCheck } from "../shared";
 import { getIsLoadingAuth } from "../shared/reducers/Authorization";
-import { ErrorBoundary } from "react-error-boundary";
 
 function App() {
   useAuthCheck();
