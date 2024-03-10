@@ -25,6 +25,7 @@ export const store = configureStore({
           "auth/login/rejected",
           "auth/login/fulfilled",
           "search/setResultSearch",
+          "search/updateResult",
         ],
       },
     })

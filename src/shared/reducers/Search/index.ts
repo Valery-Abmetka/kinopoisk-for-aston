@@ -2,8 +2,14 @@ import {
   getSearchStatus,
   getSearchMovies,
   getSearchError,
+  getUpdateSearchStatus,
 } from "./SearchSelectors/SearchSelector";
-import { setResultSearch, setStatus } from "./SearchSlice/SearchSlice";
+import {
+  setResultSearch,
+  setStatus,
+  setStatusUpdate,
+  updateResult,
+} from "./SearchSlice/SearchSlice";
 import searchReducer from "./SearchSlice/SearchSlice";
 
 export {
@@ -12,5 +18,8 @@ export {
   searchReducer,
   getSearchMovies,
   getSearchError,
+  getUpdateSearchStatus,
   setStatus,
+  updateResult,
+  setStatusUpdate,
 };

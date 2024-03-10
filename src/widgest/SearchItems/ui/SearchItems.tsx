@@ -6,12 +6,14 @@ import {
   getSearchMovies,
   getSearchStatus,
   getSearchError,
+  getUpdateSearchStatus,
 } from "../../../shared/reducers/Search";
 
 export function SearchItems() {
   const searchMovies = useSelector(getSearchMovies);
   const status = useSelector(getSearchStatus);
   const error = useSelector(getSearchError);
+  const statusUpdate = useSelector(getUpdateSearchStatus);
 
   if (status === "uninitialized") {
     return <div>Отправка запроса</div>;
@@ -24,25 +26,38 @@ export function SearchItems() {
   }
 
   return (
-    <div className={styles.films}>
-      {searchMovies.length > 0 ? (
-        searchMovies?.map((movie) => {
-          return (
-            <Link to={`/movies/${movie.kinopoiskId}`} key={movie.kinopoiskId}>
-              <Card
-                kinopoiskId={movie.kinopoiskId}
-                nameRu={movie.nameRu}
-                ratingKinopoisk={movie.ratingKinopoisk}
-                posterUrlPreview={movie.posterUrlPreview}
-                genres={movie.genres}
-                year={movie.year}
-              />
-            </Link>
-          );
-        })
-      ) : (
-        <div>Ничего не найдено</div>
-      )}
-    </div>
+    <>
+      <div className={styles.films}>
+        {searchMovies.length > 0 ? (
+          searchMovies?.map((movie, index) => {
+            return (
+              <Link
+                to={`/movies/${movie.kinopoiskId}`}
+                key={movie.kinopoiskId + index}
+                //иногда отдает одни и те же фильмы на разных страницах
+                //поэтому нужен index к key чтобы были уникальными
+              >
+                <Card
+                  kinopoiskId={movie.kinopoiskId}
+                  nameRu={movie.nameRu}
+                  ratingKinopoisk={movie.ratingKinopoisk}
+                  posterUrlPreview={movie.posterUrlPreview}
+                  genres={movie.genres}
+                  year={movie.year}
+                />
+              </Link>
+            );
+          })
+        ) : (
+          <div>Ничего не найдено</div>
+        )}
+      </div>
+      {statusUpdate === "pending" ? (
+        <h1 className={styles.update}>Получение ответа. Загрузка...</h1>
+      ) : null}
+      {statusUpdate === "rejected" ? (
+        <h1 className={styles.update}>Ошибка</h1>
+      ) : null}
+    </>
   );
 }
