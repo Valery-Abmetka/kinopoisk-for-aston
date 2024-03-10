@@ -52,7 +52,7 @@ export function SearchPage() {
         ? dispatch(setStatusUpdate(resultSearch.status))
         : dispatch(setStatus(resultSearch.status));
     }
-  }, [resultSearch, dispatch]);
+  }, [resultSearch, dispatch, currentPage]);
 
   return <SearchItems />;
 }
