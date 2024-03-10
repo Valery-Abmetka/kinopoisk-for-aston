@@ -29,14 +29,14 @@ export interface RespSearch {
 }
 
 interface ReturnValue {
-  kinopoiskId: number | undefined;
-  nameRu: string | null;
-  genres: Genre[] | null;
-  posterUrlPreview: string | null;
+  kinopoiskId: number;
+  nameRu: string;
+  genres: Genre[];
+  posterUrlPreview: string;
   ratingKinopoisk: number | null;
-  year: string | null;
-  description?: string | null;
-  webUrl?: string | null;
+  year: string;
+  description?: string;
+  webUrl?: string;
 }
 interface queryReturnValue {
   films: ReturnValue[];
@@ -44,26 +44,28 @@ interface queryReturnValue {
 }
 
 export const transformInitialMovies = (data: RespInitial): ReturnValue[] => {
-  return data?.items.map((movie: Item) => ({
+  return data?.items.map((movie) => ({
     kinopoiskId: movie.kinopoiskId,
-    nameRu: movie.nameRu || movie.nameOriginal || movie.nameEn,
-    genres: movie.genres,
-    posterUrlPreview: movie.posterUrlPreview,
+    nameRu:
+      movie.nameRu || movie.nameOriginal || movie.nameEn || "Нет названия",
+    genres: movie.genres || [],
+    posterUrlPreview: movie.posterUrlPreview || "Нет фото",
     ratingKinopoisk: movie.ratingKinopoisk || movie.ratingImbd,
-    year: movie.year,
+    year: movie.year || "Не известно",
   }));
 };
 
 export const transformMovieById = (movie: Item): ReturnValue => {
   return {
     kinopoiskId: movie.kinopoiskId,
-    nameRu: movie.nameRu || movie.nameOriginal || movie.nameEn,
-    genres: movie.genres,
-    posterUrlPreview: movie.posterUrlPreview,
+    nameRu:
+      movie.nameRu || movie.nameOriginal || movie.nameEn || "Нет названия",
+    genres: movie.genres || [],
+    posterUrlPreview: movie.posterUrlPreview || "Нет фото",
     ratingKinopoisk: movie.ratingKinopoisk || movie.ratingImbd,
-    year: movie.year,
-    description: movie.description,
-    webUrl: movie.webUrl,
+    year: movie.year || "Не известно",
+    description: movie.description || "Нет описания",
+    webUrl: movie.webUrl || "",
   };
 };
 
@@ -71,14 +73,15 @@ export const transformMoviesByQuery = (res: RespSearch): queryReturnValue => {
   return {
     films: res?.films?.map((movie: Item) => {
       return {
-        kinopoiskId: movie.kinopoiskId || movie.filmId,
-        nameRu: movie.nameRu || movie.nameOriginal || movie.nameEn,
-        genres: movie.genres,
-        posterUrlPreview: movie.posterUrlPreview,
+        kinopoiskId: movie.kinopoiskId || (movie.filmId as number), // не смог привести тк иногда апи отдает undefiend а ингода число
+        nameRu:
+          movie.nameRu || movie.nameOriginal || movie.nameEn || "Нет названия",
+        genres: movie.genres || [],
+        posterUrlPreview: movie.posterUrlPreview || "Нет фото",
         ratingKinopoisk: movie.ratingKinopoisk || movie.ratingImbd,
-        year: movie.year,
-        description: movie.description,
-        webUrl: movie.webUrl,
+        year: movie.year || "Не известно",
+        description: movie.description || "Нет описания",
+        webUrl: movie.webUrl || "",
       };
     }),
     keywords: res.keyword,

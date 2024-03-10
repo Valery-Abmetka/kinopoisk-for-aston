@@ -21,11 +21,13 @@ export function useRegistration() {
   const submitHandler: SubmitHandler<MyForm> = async (user) => {
     try {
       const response = (await dispatch(signup(user))) as Response;
-      // чтобы результат сразу был типизирован не
-      //смог это обойти по другому но понимаю что как то можно
-      if (response.type == "auth/signup/fulfilled") {
+
+      if (
+        response.type == "auth/signup/fulfilled" &&
+        typeof response.payload.email === "string"
+      ) {
         const transformData = {
-          email: response.payload.email as string,
+          email: response.payload.email,
           id: response.payload.uid,
         };
         navigate("/");

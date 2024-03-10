@@ -1,5 +1,4 @@
 import { useDebounce, useGetMoviesBySearchQuery } from "..";
-import { Item } from "../api/kinopoiskApi/transformResponse/transformResponse";
 
 export function useSearch(queryParams: string, page: number) {
   const debounce = useDebounce(queryParams, 500);
@@ -9,9 +8,9 @@ export function useSearch(queryParams: string, page: number) {
     {
       selectFromResult: ({ status, data, isError, originalArgs }) => ({
         status: status,
-        movies: data?.films as Item[], //уход от null к обычным значениям
+        movies: data?.films,
         isError: isError,
-        keyword: data?.keywords as string, //уход от null к обычным значениям
+        keyword: data?.keywords,
         page: originalArgs?.page,
       }),
     },

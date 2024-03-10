@@ -15,14 +15,13 @@ export function History() {
   const dispatch = useDispatch<AppDispatch>();
   const history = useSelector(selectHistory);
   const error = useSelector(selectIsHistoryError);
-  const email = useSelector(getEmail) as string;
-  //либо null либо string
-  // если сделать только string то когда приходит ответ с firestora
-  //ругается тк там может быть null и везде пришлось приводить
+  const email = useSelector(getEmail);
   const isFirstLoading = useSelector(selectIsFirstLoadingHistory);
 
   function deleteFromHistoryHandler(keyword: string) {
-    dispatch(deleteFromHistory({ email, keyword }));
+    if (typeof email === "string") {
+      dispatch(deleteFromHistory({ email, keyword }));
+    }
   }
 
   if (isFirstLoading) {

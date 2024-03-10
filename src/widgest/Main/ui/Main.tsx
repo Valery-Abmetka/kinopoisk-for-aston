@@ -1,14 +1,12 @@
 import { Link } from "react-router-dom";
 import styles from "./Main.module.css";
 import { Card } from "../../../entities";
-import { Props as Item } from "../../../entities";
 import { useGetInitialMoviesQuery } from "../../../shared";
 
 export function Main() {
   const { movies, isError, isLoading } = useGetInitialMoviesQuery(null, {
     selectFromResult: ({ data, isError, isLoading }) => ({
-      movies: data as Item[], // приведение к типам вроде настроил типизацию ответа
-      // но без этого не получилось
+      movies: data,
       isError: isError,
       isLoading: isLoading,
     }),

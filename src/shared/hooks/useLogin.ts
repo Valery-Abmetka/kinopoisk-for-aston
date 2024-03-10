@@ -23,13 +23,13 @@ export function useLogin() {
       const response = (await dispatch(login(user))) as Response; // чтобы результат сразу был типизирован не
       //смог это обойти по другому но понимаю что как то можно
 
-      if (response.type == "auth/login/fulfilled") {
+      if (
+        response.type == "auth/login/fulfilled" &&
+        typeof response.payload.email === "string"
+      ) {
         navigate("/");
-        //либо null либо string
-        // если сделать только string то когда приходит ответ с firestora
-        //ругается тк там может быть null и везде пришлось приводить
         const transformData = {
-          email: response.payload.email as string,
+          email: response.payload.email,
         };
         await dispatch(getProfile(transformData.email));
       }

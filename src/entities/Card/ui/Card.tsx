@@ -6,7 +6,7 @@ export interface Props {
   kinopoiskId: number;
   nameRu: string;
   genres: Genre[];
-  ratingKinopoisk: number;
+  ratingKinopoisk: number | null;
   year: string;
   posterUrlPreview: string;
   nameOriginal?: string;
